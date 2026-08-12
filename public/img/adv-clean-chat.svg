@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 280" fill="none" aria-hidden="true">
+  <defs>
+    <filter id="shadow" x="-12%" y="-8%" width="124%" height="120%">
+      <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#121212" flood-opacity="0.14"/>
+    </filter>
+  </defs>
+  <rect x="12" y="10" width="176" height="260" rx="22" fill="#fff" stroke="#121212" stroke-width="1.4" filter="url(#shadow)"/>
+  <!-- header -->
+  <path d="M12 32c0-12.15 9.85-22 22-22h132c12.15 0 22 9.85 22 22v28H12V32z" fill="#075E54"/>
+  <circle cx="42" cy="36" r="11" fill="#25D366" opacity="0.85"/>
+  <rect x="60" y="28" width="72" height="8" rx="4" fill="#fff" opacity="0.92"/>
+  <rect x="60" y="40" width="42" height="5" rx="2.5" fill="#fff" opacity="0.45"/>
+  <!-- bubbles -->
+  <rect x="28" y="78" width="96" height="28" rx="12" fill="#F0F2F5"/>
+  <rect x="28" y="114" width="118" height="36" rx="12" fill="#F0F2F5"/>
+  <rect x="76" y="160" width="96" height="28" rx="12" fill="#DCF8C6"/>
+  <rect x="58" y="198" width="114" height="32" rx="12" fill="#DCF8C6"/>
+  <!-- input -->
+  <rect x="28" y="242" width="118" height="18" rx="9" fill="#F0F2F5"/>
+  <circle cx="162" cy="251" r="11" fill="#25D366"/>
+</svg>

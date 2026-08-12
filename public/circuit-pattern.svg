@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 360 360" fill="none">
+  <!-- Traces întrerupte -->
+  <path d="M28 52h40" stroke="#121212" stroke-opacity="0.28" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M78 52h28" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M106 52v36" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M106 98h44" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M188 28v40" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M188 78v22" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M188 100h56" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M256 100h40" stroke="#e10600" stroke-opacity="0.26" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M40 176h48" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M100 176h36" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M136 176v48" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M136 236h40" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M300 112v40" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M300 164v36" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M300 200H230" stroke="#121212" stroke-opacity="0.24" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M218 200h-24" stroke="#e10600" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M24 268h36" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M72 268h48" stroke="#121212" stroke-opacity="0.2" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M120 268v44" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M220 236h48" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M280 236h40" stroke="#121212" stroke-opacity="0.2" stroke-width="1.25" stroke-linecap="round"/>
+  <path d="M320 236v56" stroke="#121212" stroke-opacity="0.22" stroke-width="1.25" stroke-linecap="round"/>
+
+  <path d="M200 148h40" stroke="#121212" stroke-opacity="0.2" stroke-width="1.15" stroke-linecap="round"/>
+  <path d="M70 320h80" stroke="#e10600" stroke-opacity="0.22" stroke-width="1.15" stroke-linecap="round"/>
+
+  <!-- Noduri -->
+  <circle cx="106" cy="52" r="2.6" fill="#121212" fill-opacity="0.3"/>
+  <circle cx="150" cy="98" r="2.4" fill="#121212" fill-opacity="0.26"/>
+  <circle cx="188" cy="100" r="2.5" fill="#e10600" fill-opacity="0.3"/>
+  <circle cx="296" cy="100" r="2.4" fill="#e10600" fill-opacity="0.28"/>
+  <circle cx="136" cy="176" r="2.5" fill="#121212" fill-opacity="0.28"/>
+  <circle cx="176" cy="236" r="2.3" fill="#121212" fill-opacity="0.24"/>
+  <circle cx="300" cy="200" r="2.5" fill="#121212" fill-opacity="0.28"/>
+  <circle cx="194" cy="200" r="2.3" fill="#e10600" fill-opacity="0.26"/>
+  <circle cx="120" cy="268" r="2.3" fill="#121212" fill-opacity="0.26"/>
+  <circle cx="268" cy="236" r="2.2" fill="#121212" fill-opacity="0.22"/>
+  <circle cx="320" cy="292" r="2.3" fill="#121212" fill-opacity="0.22"/>
+
+  <!-- Logo VIDIA (×2) -->
+  <g opacity="0.38">
+    <circle cx="62" cy="118" r="12" fill="#e10600"/>
+    <text x="62" y="123" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="13" font-weight="800" fill="#ffffff">V</text>
+  </g>
+  <g opacity="0.34">
+    <circle cx="168" cy="300" r="11" fill="#e10600"/>
+    <text x="168" y="305" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="12" font-weight="800" fill="#ffffff">V</text>
+  </g>
+
+  <!-- WhatsApp (×2) — cerc verde + glyph autentic -->
+  <g opacity="0.36" transform="translate(248 148)">
+    <circle cx="12" cy="12" r="12" fill="#25D366"/>
+    <g transform="translate(12 12) scale(0.86) translate(-12 -12)">
+      <path
+        fill="#ffffff"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+      />
+    </g>
+  </g>
+  <g opacity="0.32" transform="translate(40 68)">
+    <circle cx="10" cy="10" r="10" fill="#25D366"/>
+    <g transform="translate(10 10) scale(0.72) translate(-12 -12)">
+      <path
+        fill="#ffffff"
+        d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"
+      />
+    </g>
+  </g>
+
+  <!-- Google Calendar (×2) -->
+  <g opacity="0.36" transform="translate(250 48)">
+    <rect x="1" y="3" width="22" height="20" rx="3" fill="#ffffff" stroke="#DADCE0" stroke-width="1"/>
+    <path d="M1 8h22v3H1V8Z" fill="#4285F4"/>
+    <rect x="1" y="3" width="22" height="5" rx="2.5" fill="#4285F4"/>
+    <circle cx="7.5" cy="4.5" r="1" fill="#ffffff"/>
+    <circle cx="16.5" cy="4.5" r="1" fill="#ffffff"/>
+    <text x="12" y="19.5" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="9" font-weight="700" fill="#3c4043">31</text>
+  </g>
+  <g opacity="0.32" transform="translate(200 248)">
+    <rect x="1" y="3" width="20" height="18" rx="3" fill="#ffffff" stroke="#DADCE0" stroke-width="1"/>
+    <path d="M1 7.5h20v2.5H1V7.5Z" fill="#4285F4"/>
+    <rect x="1" y="3" width="20" height="4.5" rx="2.2" fill="#4285F4"/>
+    <circle cx="7" cy="4.2" r="0.9" fill="#ffffff"/>
+    <circle cx="15" cy="4.2" r="0.9" fill="#ffffff"/>
+    <text x="11" y="18" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="8" font-weight="700" fill="#3c4043">31</text>
+  </g>
+
+  <!-- ChatGPT (×2) -->
+  <g opacity="0.36" transform="translate(38 214)">
+    <circle cx="12" cy="12" r="12" fill="#ffffff" stroke="#121212" stroke-width="1"/>
+    <g transform="translate(4.2 4.2) scale(0.65)" fill="#121212">
+      <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.774-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.373v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.387-.668zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.229V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.163a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L10.96 5.46a.795.795 0 0 0-.393.681zm1.35-2.675l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </g>
+  </g>
+  <g opacity="0.32" transform="translate(318 168)">
+    <circle cx="10" cy="10" r="10" fill="#ffffff" stroke="#121212" stroke-width="1"/>
+    <g transform="translate(3.5 3.5) scale(0.54)" fill="#121212">
+      <path d="M22.282 9.821a5.985 5.985 0 0 0-.516-4.91 6.046 6.046 0 0 0-6.51-2.9A6.065 6.065 0 0 0 4.981 4.18a5.985 5.985 0 0 0-3.998 2.9 6.046 6.046 0 0 0 .743 7.097 5.98 5.98 0 0 0 .51 4.911 6.051 6.051 0 0 0 6.515 2.9A5.985 5.985 0 0 0 13.26 24a6.056 6.056 0 0 0 5.774-4.206 5.99 5.99 0 0 0 3.997-2.9 6.056 6.056 0 0 0-.747-7.073zM13.26 22.43a4.476 4.476 0 0 1-2.876-1.04l.141-.081 4.779-2.758a.795.795 0 0 0 .392-.681v-6.737l2.02 1.168a.071.071 0 0 1 .038.052v5.583a4.504 4.504 0 0 1-4.494 4.494zM3.6 18.304a4.47 4.47 0 0 1-.535-3.014l.142.085 4.783 2.759a.771.771 0 0 0 .78 0l5.843-3.373v2.332a.08.08 0 0 1-.033.062L9.74 19.95a4.5 4.5 0 0 1-6.14-1.646zM2.34 7.896a4.485 4.485 0 0 1 2.366-1.973V11.6a.766.766 0 0 0 .388.676l5.815 3.355-2.02 1.168a.076.076 0 0 1-.071 0l-4.83-2.786A4.504 4.504 0 0 1 2.34 7.872zm16.597 3.855l-5.833-3.387L15.119 7.2a.076.076 0 0 1 .071 0l4.83 2.791a4.494 4.494 0 0 1-.676 8.105v-5.678a.79.79 0 0 0-.387-.668zm2.01-3.023l-.141-.085-4.774-2.782a.776.776 0 0 0-.785 0L9.409 9.229V6.897a.066.066 0 0 1 .028-.061l4.83-2.787a4.5 4.5 0 0 1 6.68 4.66zm-12.64 4.135l-2.02-1.163a.08.08 0 0 1-.038-.057V6.075a4.5 4.5 0 0 1 7.375-3.453l-.142.08L10.96 5.46a.795.795 0 0 0-.393.681zm1.35-2.675l2.602-1.5 2.607 1.5v2.999l-2.597 1.5-2.607-1.5z"/>
+    </g>
+  </g>
+
+  <!-- AWS (×2) -->
+  <g opacity="0.36" transform="translate(278 292)">
+    <rect x="0" y="0" width="36" height="22" rx="4" fill="#ffffff" stroke="#DADCE0" stroke-width="1"/>
+    <text x="18" y="12" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="9" font-weight="800" fill="#232F3E" letter-spacing="0.4">aws</text>
+    <path
+      d="M10.2 15.2c2.7 2 6.7 3.1 10.1 3.1 4.8 0 9.1-1.8 12.3-4.7.3-.3-.1-.6-.4-.4-3.2 2.1-7.6 3.3-12 3.3-3 0-6.4-.7-9.5-1.9-.5-.2-.8.3-.5.6z"
+      fill="#FF9900"
+    />
+    <path
+      d="M28.6 13.6c-.3-.4-2.3-.2-3.2-.1-.3 0-.3-.2-.1-.4 1.5-1.1 4.1-.8 4.4-.4.3.4-.1 3-1.5 4.2-.2.2-.4.1-.3-.1.4-.9 1.1-2.9.7-3.2z"
+      fill="#FF9900"
+    />
+  </g>
+  <g opacity="0.32" transform="translate(118 28)">
+    <rect x="0" y="0" width="32" height="20" rx="4" fill="#ffffff" stroke="#DADCE0" stroke-width="1"/>
+    <text x="16" y="11" text-anchor="middle" font-family="Figtree, Arial, sans-serif" font-size="8" font-weight="800" fill="#232F3E" letter-spacing="0.4">aws</text>
+    <path
+      d="M9.2 13.8c2.4 1.8 5.9 2.8 8.9 2.8 4.2 0 8-1.6 10.9-4.2.3-.3 0-.5-.3-.3-2.9 1.8-6.7 2.9-10.6 2.9-2.7 0-5.6-.6-8.4-1.7-.4-.2-.7.2-.5.5z"
+      fill="#FF9900"
+    />
+    <path
+      d="M25.4 12.4c-.3-.4-2-.2-2.8-.1-.2 0-.3-.2-.1-.3 1.4-1 3.6-.7 3.8-.4.3.3-.1 2.6-1.4 3.6-.2.2-.4.1-.3-.1.3-.8 1-2.5.8-2.8z"
+      fill="#FF9900"
+    />
+  </g>
+
+  <!-- Messages / SMS (×2) — bulă albastră + 3 puncte (distinct de WhatsApp) -->
+  <g opacity="0.36" transform="translate(188 42)">
+    <circle cx="12" cy="12" r="12" fill="#1A73E8"/>
+    <path
+      fill="#ffffff"
+      d="M6.2 8.1c0-1.35 1.15-2.45 2.55-2.45h6.5c1.4 0 2.55 1.1 2.55 2.45v4.35c0 1.35-1.15 2.45-2.55 2.45h-2.05l-2.85 2.15v-2.15H8.75c-1.4 0-2.55-1.1-2.55-2.45V8.1z"
+    />
+    <circle cx="9.6" cy="10.3" r="0.95" fill="#1A73E8"/>
+    <circle cx="12" cy="10.3" r="0.95" fill="#1A73E8"/>
+    <circle cx="14.4" cy="10.3" r="0.95" fill="#1A73E8"/>
+  </g>
+  <g opacity="0.32" transform="translate(300 218)">
+    <circle cx="10" cy="10" r="10" fill="#1A73E8"/>
+    <path
+      fill="#ffffff"
+      d="M5.2 6.75c0-1.1.95-2 2.1-2h5.4c1.15 0 2.1.9 2.1 2v3.55c0 1.1-.95 2-2.1 2H10.9L8.5 16.1v-1.8H7.3c-1.15 0-2.1-.9-2.1-2V6.75z"
+    />
+    <circle cx="8" cy="8.55" r="0.8" fill="#1A73E8"/>
+    <circle cx="10" cy="8.55" r="0.8" fill="#1A73E8"/>
+    <circle cx="12" cy="8.55" r="0.8" fill="#1A73E8"/>
+  </g>
+</svg>
