@@ -93,7 +93,7 @@ const cards = [
     id: "disponibilitate",
     eyebrow: "Disponibilitate totală",
     visual: <AvailabilityVisual />,
-    title: "0 stres, disponibilitate totală.",
+    title: "Zero stres, disponibilitate totală.",
     text: "VIDIA oferă exact atâtea informații pe cât îți dorești tu să ofere. Tu decizi ce și cât comunică asistentul tău virtual cu clienții. Când ești în vacanță, sau ai alte priorități, VIDIA va fi tot acolo, făcându-și treaba.",
   },
   {
