@@ -3074,9 +3074,21 @@
   color: var(--red);
 }
 
+.form-submit-error {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--red);
+  line-height: 1.45;
+}
+
 .submit-btn {
   margin-top: 0.35rem;
   width: 100%;
+}
+
+.submit-btn:disabled {
+  opacity: 0.7;
+  cursor: wait;
 }
 
 .contact-success {
@@ -3231,6 +3243,11 @@
   padding: 0.25rem 0;
 }
 
+.contact-channels .footer-qr-item:hover {
+  border: none;
+  transform: translateY(-2px);
+}
+
 .contact-channels .footer-qr-code {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -3358,6 +3375,16 @@
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   padding: 0.9rem 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition:
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.footer-qr-item:hover {
+  border-color: rgba(255, 255, 255, 0.22);
+  transform: translateY(-2px);
 }
 
 .footer-qr-code {

@@ -1,5 +1,6 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
+import { CONTACT_EMAIL, FORMSUBMIT_ENDPOINT } from "../contact";
 import {
   PLAN_EVENT,
   PLAN_OPTIONS,
@@ -33,6 +34,8 @@ export function ContactForm() {
     {},
   );
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
     const applyPlan = (plan: PlanOption | "") => {
@@ -72,14 +75,56 @@ export function ContactForm() {
     return Object.keys(next).length === 0;
   };
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setSubmitError(null);
     if (!validate()) return;
 
-    console.info("VIDIA lead:", form);
-    clearSelectedPlan();
-    setSubmitted(true);
-    setForm(initial);
+    setSubmitting(true);
+    try {
+      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          _subject: `Solicitare VIDIA — ${form.plan}`,
+          _template: "table",
+          _captcha: false,
+          _replyto: form.email.trim(),
+          email: form.email.trim(),
+          phone: form.phone.trim(),
+          businessType: form.businessType.trim(),
+          plan: form.plan,
+          message: [
+            `Telefon: ${form.phone.trim()}`,
+            `E-mail: ${form.email.trim()}`,
+            `Tip afacere: ${form.businessType.trim()}`,
+            `Plan dorit: ${form.plan}`,
+          ].join("\n"),
+        }),
+      });
+
+      const data = (await response.json().catch(() => null)) as {
+        success?: string | boolean;
+        message?: string;
+      } | null;
+
+      if (!response.ok) {
+        throw new Error(data?.message || "FormSubmit error");
+      }
+
+      clearSelectedPlan();
+      setSubmitted(true);
+      setForm(initial);
+    } catch {
+      setSubmitError(
+        `Nu am putut trimite solicitarea. Încearcă din nou sau scrie-ne la ${CONTACT_EMAIL}.`,
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -110,106 +155,130 @@ export function ContactForm() {
           </div>
 
           <div className="contact-panel">
-          {submitted ? (
-            <div className="contact-success" role="status">
-              <h3>Mulțumim!</h3>
-              <p>
-                Am primit solicitarea. Te sunăm sau îți scriem în curând pe e-mail
-                / telefon.
-              </p>
-              <button
-                type="button"
-                className="btn btn-ghost"
-                onClick={() => setSubmitted(false)}
-              >
-                Trimite altă solicitare
-              </button>
-            </div>
-          ) : (
-            <form className="contact-form" onSubmit={onSubmit} noValidate>
-              <div className="field">
-                <label htmlFor="phone">Număr de telefon</label>
-                <input
-                  id="phone"
-                  name="phone"
-                  type="tel"
-                  autoComplete="tel"
-                  placeholder="07xx xxx xxx"
-                  value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                  aria-invalid={Boolean(errors.phone)}
-                  required
-                />
-                {errors.phone && <span className="field-error">{errors.phone}</span>}
-              </div>
-
-              <div className="field">
-                <label htmlFor="email">Adresă de e-mail</label>
-                <input
-                  id="email"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  placeholder="nume@afacerea.ro"
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  aria-invalid={Boolean(errors.email)}
-                  required
-                />
-                {errors.email && <span className="field-error">{errors.email}</span>}
-              </div>
-
-              <div className="field">
-                <label htmlFor="businessType">Tip afacere</label>
-                <input
-                  id="businessType"
-                  name="businessType"
-                  type="text"
-                  placeholder="ex: clinică stomatologică, salon, stație ITP"
-                  value={form.businessType}
-                  onChange={(e) =>
-                    setForm({ ...form, businessType: e.target.value })
-                  }
-                  aria-invalid={Boolean(errors.businessType)}
-                  required
-                />
-                {errors.businessType && (
-                  <span className="field-error">{errors.businessType}</span>
-                )}
-              </div>
-
-              <div className="field">
-                <label htmlFor="plan">Plan dorit</label>
-                <select
-                  id="plan"
-                  name="plan"
-                  className={`field-select${form.plan ? "" : " is-placeholder"}`}
-                  value={form.plan}
-                  onChange={(e) => {
-                    const value = e.target.value as PlanOption | "";
-                    setForm({ ...form, plan: value });
-                    if (value) saveSelectedPlan(value);
-                  }}
-                  aria-invalid={Boolean(errors.plan)}
-                  required
+            {submitted ? (
+              <div className="contact-success" role="status">
+                <h3>Mulțumim!</h3>
+                <p>
+                  Am primit solicitarea. Te sunăm sau îți scriem în curând pe
+                  e-mail / telefon.
+                </p>
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => setSubmitted(false)}
                 >
-                  <option value="" disabled>
-                    Alege un plan
-                  </option>
-                  {PLAN_OPTIONS.map((option) => (
-                    <option key={option} value={option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
-                {errors.plan && <span className="field-error">{errors.plan}</span>}
+                  Trimite altă solicitare
+                </button>
               </div>
+            ) : (
+              <form className="contact-form" onSubmit={onSubmit} noValidate>
+                <div className="field">
+                  <label htmlFor="phone">Număr de telefon</label>
+                  <input
+                    id="phone"
+                    name="phone"
+                    type="tel"
+                    autoComplete="tel"
+                    placeholder="07xx xxx xxx"
+                    value={form.phone}
+                    onChange={(e) =>
+                      setForm({ ...form, phone: e.target.value })
+                    }
+                    aria-invalid={Boolean(errors.phone)}
+                    required
+                    disabled={submitting}
+                  />
+                  {errors.phone && (
+                    <span className="field-error">{errors.phone}</span>
+                  )}
+                </div>
 
-              <button type="submit" className="btn btn-primary submit-btn">
-                Trimite solicitarea
-              </button>
-            </form>
-          )}
+                <div className="field">
+                  <label htmlFor="email">Adresă de e-mail</label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    autoComplete="email"
+                    placeholder="nume@afacerea.ro"
+                    value={form.email}
+                    onChange={(e) =>
+                      setForm({ ...form, email: e.target.value })
+                    }
+                    aria-invalid={Boolean(errors.email)}
+                    required
+                    disabled={submitting}
+                  />
+                  {errors.email && (
+                    <span className="field-error">{errors.email}</span>
+                  )}
+                </div>
+
+                <div className="field">
+                  <label htmlFor="businessType">Tip afacere</label>
+                  <input
+                    id="businessType"
+                    name="businessType"
+                    type="text"
+                    placeholder="ex: clinică stomatologică, salon, stație ITP"
+                    value={form.businessType}
+                    onChange={(e) =>
+                      setForm({ ...form, businessType: e.target.value })
+                    }
+                    aria-invalid={Boolean(errors.businessType)}
+                    required
+                    disabled={submitting}
+                  />
+                  {errors.businessType && (
+                    <span className="field-error">{errors.businessType}</span>
+                  )}
+                </div>
+
+                <div className="field">
+                  <label htmlFor="plan">Plan dorit</label>
+                  <select
+                    id="plan"
+                    name="plan"
+                    className={`field-select${form.plan ? "" : " is-placeholder"}`}
+                    value={form.plan}
+                    onChange={(e) => {
+                      const value = e.target.value as PlanOption | "";
+                      setForm({ ...form, plan: value });
+                      if (value) saveSelectedPlan(value);
+                    }}
+                    aria-invalid={Boolean(errors.plan)}
+                    required
+                    disabled={submitting}
+                  >
+                    <option value="" disabled>
+                      Alege un plan
+                    </option>
+                    {PLAN_OPTIONS.map((option) => (
+                      <option key={option} value={option}>
+                        {option}
+                      </option>
+                    ))}
+                  </select>
+                  {errors.plan && (
+                    <span className="field-error">{errors.plan}</span>
+                  )}
+                </div>
+
+                {submitError && (
+                  <p className="form-submit-error" role="alert">
+                    {submitError}
+                  </p>
+                )}
+
+                <button
+                  type="submit"
+                  className="btn btn-primary submit-btn"
+                  disabled={submitting}
+                >
+                  {submitting ? "Se trimite…" : "Trimite solicitarea"}
+                </button>
+              </form>
+            )}
           </div>
 
           <aside

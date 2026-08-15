@@ -66,7 +66,7 @@ function SmsMockup() {
           </p>
           <p>
             Programează-te direct pe WhatsApp:{" "}
-            <strong className="demo-sms-link">wa.me/40722100200</strong>
+            <strong className="demo-sms-link">wa.me/40722830314</strong>
           </p>
           <p className="demo-sms-legal">
             Pentru dezabonare răspunde cu <strong>STOP</strong>.
