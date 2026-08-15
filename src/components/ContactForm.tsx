@@ -1,6 +1,12 @@
 import { useEffect, useState, type FormEvent } from "react";
 import { Link } from "react-router-dom";
-import { CONTACT_EMAIL, FORMSUBMIT_ENDPOINT } from "../contact";
+import {
+  CONTACT_EMAIL,
+  WEB3FORMS_ACCESS_KEY,
+  WEB3FORMS_ENDPOINT,
+  buildLeadMailto,
+  MAILTO_URL,
+} from "../contact";
 import {
   PLAN_EVENT,
   PLAN_OPTIONS,
@@ -16,6 +22,7 @@ type FormState = {
   email: string;
   businessType: string;
   plan: PlanOption | "";
+  honey: string;
 };
 
 const initial: FormState = {
@@ -23,7 +30,10 @@ const initial: FormState = {
   email: "",
   businessType: "",
   plan: "",
+  honey: "",
 };
+
+const hasWeb3FormsKey = Boolean(WEB3FORMS_ACCESS_KEY);
 
 export function ContactForm() {
   const [form, setForm] = useState<FormState>(() => ({
@@ -75,44 +85,77 @@ export function ContactForm() {
     return Object.keys(next).length === 0;
   };
 
+  const leadFields = () => ({
+    phone: form.phone.trim(),
+    email: form.email.trim(),
+    businessType: form.businessType.trim(),
+    plan: form.plan,
+  });
+
+  const onMailtoSubmit = () => {
+    if (!validate()) return;
+    if (form.honey.trim()) {
+      setSubmitted(true);
+      setForm(initial);
+      return;
+    }
+    const fields = leadFields();
+    window.location.href = buildLeadMailto(fields);
+    clearSelectedPlan();
+    setSubmitted(true);
+    setForm(initial);
+  };
+
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setSubmitError(null);
     if (!validate()) return;
 
+    // Honeypot: bots that fill hidden fields are ignored silently.
+    if (form.honey.trim()) {
+      setSubmitted(true);
+      setForm(initial);
+      return;
+    }
+
+    if (!hasWeb3FormsKey || !WEB3FORMS_ACCESS_KEY) {
+      onMailtoSubmit();
+      return;
+    }
+
+    const fields = leadFields();
     setSubmitting(true);
     try {
-      const response = await fetch(FORMSUBMIT_ENDPOINT, {
+      const response = await fetch(WEB3FORMS_ENDPOINT, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
         },
         body: JSON.stringify({
-          _subject: `Solicitare VIDIA — ${form.plan}`,
-          _template: "table",
-          _captcha: false,
-          _replyto: form.email.trim(),
-          email: form.email.trim(),
-          phone: form.phone.trim(),
-          businessType: form.businessType.trim(),
-          plan: form.plan,
+          access_key: WEB3FORMS_ACCESS_KEY,
+          subject: `Solicitare VIDIA — ${fields.plan}`,
+          from_name: "Site VIDIA",
+          email: fields.email,
+          phone: fields.phone,
+          businessType: fields.businessType,
+          plan: fields.plan,
           message: [
-            `Telefon: ${form.phone.trim()}`,
-            `E-mail: ${form.email.trim()}`,
-            `Tip afacere: ${form.businessType.trim()}`,
-            `Plan dorit: ${form.plan}`,
+            `Telefon: ${fields.phone}`,
+            `E-mail: ${fields.email}`,
+            `Tip afacere: ${fields.businessType}`,
+            `Plan dorit: ${fields.plan}`,
           ].join("\n"),
         }),
       });
 
       const data = (await response.json().catch(() => null)) as {
-        success?: string | boolean;
+        success?: boolean;
         message?: string;
       } | null;
 
-      if (!response.ok) {
-        throw new Error(data?.message || "FormSubmit error");
+      if (!response.ok || !data?.success) {
+        throw new Error(data?.message || "Web3Forms error");
       }
 
       clearSelectedPlan();
@@ -120,12 +163,16 @@ export function ContactForm() {
       setForm(initial);
     } catch {
       setSubmitError(
-        `Nu am putut trimite solicitarea. Încearcă din nou sau scrie-ne la ${CONTACT_EMAIL}.`,
+        `Nu am putut trimite solicitarea online. Folosește butonul de e-mail de mai jos sau scrie-ne la ${CONTACT_EMAIL}.`,
       );
     } finally {
       setSubmitting(false);
     }
   };
+
+  const mailtoHref = form.plan
+    ? buildLeadMailto(leadFields())
+    : MAILTO_URL;
 
   return (
     <section id="contact" className="section contact signal-wash">
@@ -159,19 +206,55 @@ export function ContactForm() {
               <div className="contact-success" role="status">
                 <h3>Mulțumim!</h3>
                 <p>
-                  Am primit solicitarea. Te sunăm sau îți scriem în curând pe
-                  e-mail / telefon.
+                  {hasWeb3FormsKey
+                    ? "Am primit solicitarea. Te sunăm sau îți scriem în curând pe e-mail / telefon."
+                    : "Ți-am deschis clientul de e-mail cu solicitarea precompletată. Trimite mesajul către contact@getvidia.ro ca să ne ajungă lead-ul."}
                 </p>
-                <button
-                  type="button"
-                  className="btn btn-ghost"
-                  onClick={() => setSubmitted(false)}
-                >
-                  Trimite altă solicitare
-                </button>
+                <div className="contact-success-actions">
+                  <button
+                    type="button"
+                    className="btn btn-ghost"
+                    onClick={() => setSubmitted(false)}
+                  >
+                    Trimite altă solicitare
+                  </button>
+                  <a className="btn btn-ghost" href={MAILTO_URL}>
+                    Scrie-ne pe e-mail
+                  </a>
+                </div>
               </div>
             ) : (
               <form className="contact-form" onSubmit={onSubmit} noValidate>
+                {hasWeb3FormsKey ? (
+                  <p className="form-activation-note">
+                    Solicitarea ajunge direct la {CONTACT_EMAIL} (Web3Forms).
+                    Dacă ceva nu merge, folosește butonul de e-mail de mai jos.
+                  </p>
+                ) : (
+                  <p className="form-activation-note">
+                    Trimiterea online nu e încă configurată (lipsește cheia
+                    Web3Forms). Completează formularul și apasă „Trimite prin
+                    e-mail” — se deschide clientul tău de mail cu telefon,
+                    e-mail, tip afacere și plan, către {CONTACT_EMAIL}.
+                  </p>
+                )}
+
+                {/* Honeypot — ascuns de utilizatori, nu completa */}
+                <div className="field-honey" aria-hidden="true">
+                  <label htmlFor="company_website">Website</label>
+                  <input
+                    id="company_website"
+                    name="_honey"
+                    type="text"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    value={form.honey}
+                    onChange={(e) =>
+                      setForm({ ...form, honey: e.target.value })
+                    }
+                  />
+                </div>
+
                 <div className="field">
                   <label htmlFor="phone">Număr de telefon</label>
                   <input
@@ -265,18 +348,47 @@ export function ContactForm() {
                 </div>
 
                 {submitError && (
-                  <p className="form-submit-error" role="alert">
-                    {submitError}
-                  </p>
+                  <div className="form-submit-error" role="alert">
+                    <p>{submitError}</p>
+                    <a className="form-fallback-link" href={mailtoHref}>
+                      Trimite prin e-mail (mailto)
+                    </a>
+                  </div>
                 )}
 
-                <button
-                  type="submit"
-                  className="btn btn-primary submit-btn"
-                  disabled={submitting}
-                >
-                  {submitting ? "Se trimite…" : "Trimite solicitarea"}
-                </button>
+                {hasWeb3FormsKey ? (
+                  <button
+                    type="submit"
+                    className="btn btn-primary submit-btn"
+                    disabled={submitting}
+                  >
+                    {submitting ? "Se trimite…" : "Trimite solicitarea"}
+                  </button>
+                ) : (
+                  <button
+                    type="button"
+                    className="btn btn-primary submit-btn"
+                    onClick={onMailtoSubmit}
+                  >
+                    Trimite prin e-mail
+                  </button>
+                )}
+
+                <p className="form-fallback">
+                  {hasWeb3FormsKey ? (
+                    <>
+                      Nu merge formularul?{" "}
+                      <a href={mailtoHref}>
+                        Deschide e-mail precompletat către {CONTACT_EMAIL}
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      Alternativ:{" "}
+                      <a href={MAILTO_URL}>scrie-ne direct la {CONTACT_EMAIL}</a>
+                    </>
+                  )}
+                </p>
               </form>
             )}
           </div>

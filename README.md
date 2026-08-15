@@ -2,11 +2,17 @@
 
 This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
 
-## Formular de contact (FormSubmit.co)
+## Formular de contact (Web3Forms)
 
-Formularul din `#contact` trimite lead-urile prin [FormSubmit.co](https://formsubmit.co) la `contact@getvidia.ro` (vezi `src/contact.ts`).
+Formularul din `#contact` trimite lead-urile la `contact@getvidia.ro` prin [Web3Forms](https://web3forms.com) (gratuit, potrivit pentru site static Vite). Dacă lipsește cheia, butonul principal deschide **mailto** cu telefon, e-mail, tip afacere și plan precompletate — poți testa imediat, fără signup.
 
-**Activare o singură dată:** la primul submit, FormSubmit trimite un e-mail de confirmare la `contact@getvidia.ro`. Deschide acel mesaj și confirmă adresa — abia după aceea lead-urile ajung în inbox.
+### Pași (o dată)
+
+1. Intră pe [web3forms.com](https://web3forms.com), creează un Access Key gratuit cu adresa **contact@getvidia.ro** (confirmă e-mailul dacă ți se cere).
+2. Copiază `.env.example` → `.env` și setează `VITE_WEB3FORMS_ACCESS_KEY=cheia_ta` (local). Pe **Vercel / Netlify** adaugă aceeași variabilă în Environment Variables din dashboard.
+3. Rebuild + redeploy (`npm run build` / push pe host). Fără rebuild, Vite nu include cheia în bundle.
+
+**Important:** nu commit-ui fișierul `.env` (e deja în `.gitignore`). Doar `.env.example` rămâne în repo, fără secret.
 
 Currently, two official plugins are available:
 
