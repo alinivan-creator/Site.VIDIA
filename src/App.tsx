@@ -1,6 +1,8 @@
 import { useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { Home } from "./pages/Home";
+import { TikTokLanding } from "./pages/TikTokLanding";
+import { TikTokAdCapture } from "./pages/TikTokAdCapture";
 import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import { Cookies } from "./pages/Cookies";
@@ -32,6 +34,8 @@ export default function App() {
       <ScrollManager />
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/tiktok" element={<TikTokLanding />} />
+        <Route path="/tiktok-ad" element={<TikTokAdCapture />} />
         <Route path="/termeni" element={<Terms />} />
         <Route path="/confidentialitate" element={<Privacy />} />
         <Route path="/cookies" element={<Cookies />} />

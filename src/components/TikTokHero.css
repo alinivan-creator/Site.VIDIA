@@ -1,0 +1,10 @@
+@layer theme, base, components, utilities;
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+@source "./TikTokHero.tsx";
+
+@theme {
+  --color-vidia-red: #e10600;
+  --color-vidia-red-dark: #b80500;
+  --font-display: "Figtree", sans-serif;
+}
