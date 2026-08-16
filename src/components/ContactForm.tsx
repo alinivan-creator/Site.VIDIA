@@ -210,18 +210,13 @@ export function ContactForm() {
                     ? "Am primit solicitarea. Te sunăm sau îți scriem în curând pe e-mail / telefon."
                     : "Ți-am deschis clientul de e-mail cu solicitarea precompletată. Trimite mesajul către contact@getvidia.ro ca să ne ajungă lead-ul."}
                 </p>
-                <div className="contact-success-actions">
-                  <button
-                    type="button"
-                    className="btn btn-ghost"
-                    onClick={() => setSubmitted(false)}
-                  >
-                    Trimite altă solicitare
-                  </button>
-                  <a className="btn btn-ghost" href={MAILTO_URL}>
-                    Scrie-ne pe e-mail
-                  </a>
-                </div>
+                <button
+                  type="button"
+                  className="btn btn-ghost"
+                  onClick={() => setSubmitted(false)}
+                >
+                  Trimite altă solicitare
+                </button>
               </div>
             ) : (
               <form className="contact-form" onSubmit={onSubmit} noValidate>

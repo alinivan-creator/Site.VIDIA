@@ -3268,10 +3268,68 @@
   transform: translateY(-1px);
 }
 
+.contact-channels .footer-contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  text-decoration: none;
+  cursor: default;
+}
+
+.contact-channels .footer-contact-email:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  transform: none;
+}
+
+.contact-channels .footer-contact-email-text {
+  text-decoration: none;
+}
+
+.contact-channels .footer-contact-copy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin: -0.15rem -0.35rem -0.15rem 0;
+  padding: 0;
+  border: 1.5px solid rgba(255, 255, 255, 0.55);
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.18);
+  color: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.contact-channels .footer-contact-copy:hover {
+  background: #fff;
+  border-color: #fff;
+  color: #c00500;
+}
+
+.contact-channels .footer-contact-copy:focus-visible {
+  outline: 2px solid #fff;
+  outline-offset: 2px;
+}
+
+.contact-channels .footer-contact-copy-done {
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
 .contact-channels .footer-contact-icon {
   background: #fff;
   border: none;
   color: #111;
+}
+
+.contact-channels button.footer-qr-item {
+  font: inherit;
+  cursor: pointer;
+  appearance: none;
 }
 
 .contact-channels .footer-qr-panel {

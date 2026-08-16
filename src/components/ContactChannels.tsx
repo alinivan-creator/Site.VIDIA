@@ -1,9 +1,9 @@
+import { useState } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import {
   CONTACT_EMAIL,
   CONTACT_PHONE,
   CONTACT_PHONE_DISPLAY,
-  MAILTO_URL,
   TEL_URL,
   WHATSAPP_URL,
 } from "../contact";
@@ -22,10 +22,11 @@ const VCARD_DOWNLOAD_URL = `data:text/vcard;charset=utf-8,${encodeURIComponent(V
 
 type QrCodeItem = {
   value: string;
-  href: string;
+  href?: string;
   label: string;
   external?: boolean;
   download?: string;
+  copyValue?: string;
 };
 
 const qrCodes: QrCodeItem[] = [
@@ -42,9 +43,9 @@ const qrCodes: QrCodeItem[] = [
     download: "vidia.vcf",
   },
   {
-    value: `mailto:${CONTACT_EMAIL}`,
-    href: MAILTO_URL,
+    value: CONTACT_EMAIL,
     label: "E-mail rapid",
+    copyValue: CONTACT_EMAIL,
   },
   {
     value: TEL_URL,
@@ -53,7 +54,52 @@ const qrCodes: QrCodeItem[] = [
   },
 ];
 
+function CopyIcon() {
+  return (
+    <svg
+      width="16"
+      height="16"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+      <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1" />
+    </svg>
+  );
+}
+
+async function copyText(text: string) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch {
+    return false;
+  }
+}
+
 export function ContactChannels() {
+  const [copiedEmail, setCopiedEmail] = useState(false);
+  const [copiedQr, setCopiedQr] = useState(false);
+
+  const onCopyEmail = async () => {
+    const ok = await copyText(CONTACT_EMAIL);
+    if (!ok) return;
+    setCopiedEmail(true);
+    window.setTimeout(() => setCopiedEmail(false), 1800);
+  };
+
+  const onCopyQrEmail = async () => {
+    const ok = await copyText(CONTACT_EMAIL);
+    if (!ok) return;
+    setCopiedQr(true);
+    window.setTimeout(() => setCopiedQr(false), 1800);
+  };
+
   return (
     <section id="contact-rapid" className="section contact-channels">
       <div className="container">
@@ -67,12 +113,33 @@ export function ContactChannels() {
               </p>
 
               <div className="footer-contact-links">
-                <a href={MAILTO_URL} className="footer-contact-link">
+                <div className="footer-contact-link footer-contact-email">
                   <span className="footer-contact-icon" aria-hidden="true">
                     ✉
                   </span>
-                  <span>Trimite-ne un e-mail: {CONTACT_EMAIL}</span>
-                </a>
+                  <span className="footer-contact-email-text">
+                    E-mail: {CONTACT_EMAIL}
+                  </span>
+                  <button
+                    type="button"
+                    className="footer-contact-copy"
+                    onClick={onCopyEmail}
+                    aria-label={
+                      copiedEmail
+                        ? "Adresa de e-mail a fost copiată"
+                        : `Copiază ${CONTACT_EMAIL}`
+                    }
+                    title={copiedEmail ? "Copiat!" : "Copiază adresa"}
+                  >
+                    {copiedEmail ? (
+                      <span className="footer-contact-copy-done" aria-hidden="true">
+                        ✓
+                      </span>
+                    ) : (
+                      <CopyIcon />
+                    )}
+                  </button>
+                </div>
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"
@@ -82,7 +149,7 @@ export function ContactChannels() {
                   <span className="footer-contact-icon" aria-hidden="true">
                     💬
                   </span>
-                  <span>Deschide WhatsApp (mesaj presetat)</span>
+                  <span>Deschide WhatsApp</span>
                 </a>
                 <a href={TEL_URL} className="footer-contact-link">
                   <span className="footer-contact-icon" aria-hidden="true">
@@ -101,29 +168,56 @@ export function ContactChannels() {
             <div className="footer-qr-panel">
               <p className="footer-qr-title">Coduri QR interactive</p>
               <div className="footer-qr-grid">
-                {qrCodes.map((qr) => (
-                  <a
-                    key={qr.label}
-                    href={qr.href}
-                    className="footer-qr-item"
-                    {...(qr.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    {...(qr.download ? { download: qr.download } : {})}
-                    aria-label={qr.label}
-                  >
-                    <span className="footer-qr-code">
-                      <QRCodeSVG
-                        value={qr.value}
-                        size={80}
-                        bgColor="#ffffff"
-                        fgColor="#111111"
-                        level="M"
-                      />
-                    </span>
-                    <span className="footer-qr-label">{qr.label}</span>
-                  </a>
-                ))}
+                {qrCodes.map((qr) =>
+                  qr.copyValue ? (
+                    <button
+                      key={qr.label}
+                      type="button"
+                      className="footer-qr-item"
+                      onClick={onCopyQrEmail}
+                      aria-label={
+                        copiedQr
+                          ? "Adresa de e-mail a fost copiată"
+                          : `Copiază ${qr.copyValue}`
+                      }
+                    >
+                      <span className="footer-qr-code">
+                        <QRCodeSVG
+                          value={qr.value}
+                          size={80}
+                          bgColor="#ffffff"
+                          fgColor="#111111"
+                          level="M"
+                        />
+                      </span>
+                      <span className="footer-qr-label">
+                        {copiedQr ? "Copiat!" : qr.label}
+                      </span>
+                    </button>
+                  ) : (
+                    <a
+                      key={qr.label}
+                      href={qr.href}
+                      className="footer-qr-item"
+                      {...(qr.external
+                        ? { target: "_blank", rel: "noopener noreferrer" }
+                        : {})}
+                      {...(qr.download ? { download: qr.download } : {})}
+                      aria-label={qr.label}
+                    >
+                      <span className="footer-qr-code">
+                        <QRCodeSVG
+                          value={qr.value}
+                          size={80}
+                          bgColor="#ffffff"
+                          fgColor="#111111"
+                          level="M"
+                        />
+                      </span>
+                      <span className="footer-qr-label">{qr.label}</span>
+                    </a>
+                  ),
+                )}
               </div>
             </div>
           </div>

@@ -40,20 +40,20 @@ const plans: PricingPlan[] = [
     desc: "Include programări nelimitate 24/7 pe WhatsApp.",
     pricing: {
       kind: "subscription",
-      setup: "1.500",
+      setup: "1.880",
       setupNote: "lei + TVA · plată unică",
       options: [
         {
           label: "Opțiunea 1",
-          price: "150",
+          price: "188",
           includes: "Include 1 locație și 2 calendare/angajați.",
-          extras: "Cost în plus: +80 lei/lună per calendar/angajat nou.",
+          extras: "Cost în plus: +100 lei/lună per calendar/angajat nou.",
         },
         {
           label: "Opțiunea 2",
-          price: "350",
+          price: "438",
           includes: "Include 2 locații și 4 calendare/angajați.",
-          extras: "Cost în plus: +80 lei/lună per calendar/angajat nou.",
+          extras: "Cost în plus: +100 lei/lună per calendar/angajat nou.",
         },
       ],
     },
@@ -65,21 +65,21 @@ const plans: PricingPlan[] = [
     desc: "Include conversații, triaj și interacțiuni nelimitate.",
     pricing: {
       kind: "subscription",
-      setup: "1.200",
+      setup: "1.500",
       setupNote: "lei + TVA · plată unică",
       monthlyNote: "(-20% față de Booking)",
       options: [
         {
           label: "Opțiunea 1",
-          price: "120",
+          price: "150",
           includes: "Include 1 locație și 2 fluxuri/angajați.",
-          extras: "Cost în plus: +64 lei/lună per flux/angajat nou.",
+          extras: "Cost în plus: +80 lei/lună per flux/angajat nou.",
         },
         {
           label: "Opțiunea 2",
-          price: "280",
+          price: "350",
           includes: "Include 2 locații și 4 fluxuri/angajați.",
-          extras: "Cost în plus: +64 lei/lună per flux/angajat nou.",
+          extras: "Cost în plus: +80 lei/lună per flux/angajat nou.",
         },
       ],
     },
@@ -91,26 +91,26 @@ const plans: PricingPlan[] = [
     desc: "Include ambele sisteme complet integrate, cu programări și conversații nelimitate.",
     pricing: {
       kind: "subscription",
-      setup: "1.799",
+      setup: "2.250",
       setupNote: "lei + TVA · plată unică",
       options: [
         {
           label: "Opțiunea 1",
-          price: "270",
+          price: "338",
           includes: "Include 1 locație, 2 calendare și 2 fluxuri/angajați.",
           extras:
-            "Cost în plus: +80 lei/lună per calendar nou și +64 lei/lună per flux nou.",
+            "Cost în plus: +100 lei/lună per calendar nou și +80 lei/lună per flux nou.",
         },
         {
           label: "Opțiunea 2",
-          price: "630",
+          price: "788",
           includes: "Include 2 locații, 4 calendare și 4 fluxuri/angajați.",
           extras:
-            "Cost în plus: +80 lei/lună per calendar nou și +64 lei/lună per flux nou.",
+            "Cost în plus: +100 lei/lună per calendar nou și +80 lei/lună per flux nou.",
         },
       ],
       footnote:
-        "SMS Marketing inclus fără taxă de campanie — plătești doar mesajele trimise (de la 2.00 lei / SMS + TVA).",
+        "SMS Marketing inclus fără taxă de campanie — plătești doar mesajele trimise (de la 1,80 lei / SMS + TVA).",
     },
     featured: true,
     badge: "Cel mai avantajos",
@@ -121,10 +121,10 @@ const plans: PricingPlan[] = [
     desc: "",
     pricing: {
       kind: "sms",
-      campaignFee: "299",
+      campaignFee: "375",
       campaignNote:
         "lei + TVA · doar în lunile în care lansezi, fără abonament obligatoriu",
-      perUnit: "2.00",
+      perUnit: "1,80",
       perUnitNote: "lei / SMS + TVA",
       detail: "Nu necesită deținerea unui plan VIDIA, disponibil la cerere.",
     },
