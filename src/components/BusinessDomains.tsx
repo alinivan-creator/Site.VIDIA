@@ -1,19 +1,43 @@
 const domains = [
-  { name: "Barber-shop", color: "barber", hint: "Tunsori, bărbierit, stilizare" },
-  { name: "Clinici stomatologice", color: "dental", hint: "Consultații și tratamente" },
-  { name: "Stații ITP", color: "itp", hint: "Verificări tehnice programate" },
-  { name: "Cosmetică canină", color: "pet", hint: "Îngrijire și grooming" },
-  { name: "Saloane de masaj", color: "massage", hint: "Relaxare și terapie" },
+  {
+    name: "Barber-shop",
+    color: "barber",
+    hint: "Agendă automatizată 24/7 cu agenți AI pe WhatsApp — tunsori și bărbierit fără telefon ocupat.",
+  },
+  {
+    name: "Clinici stomatologice",
+    color: "dental",
+    hint: "Programări automate și chatbot WhatsApp care reduc programările ratate la consultații și tratamente.",
+  },
+  {
+    name: "Stații ITP",
+    color: "itp",
+    hint: "Automatizări WhatsApp pentru verificări tehnice programate — sloturi confirmate fără apeluri repetate.",
+  },
+  {
+    name: "Cosmetică canină",
+    color: "pet",
+    hint: "Agenți AI pentru grooming: programări automate pe WhatsApp, pe ritmul salonului tău.",
+  },
+  {
+    name: "Saloane de masaj",
+    color: "massage",
+    hint: "Chatbot WhatsApp pentru relaxare și terapie — programări automate, zi și noapte.",
+  },
   {
     name: "Manichiură / pedichiură",
     color: "nails",
-    hint: "Unghii și stilizare",
+    hint: "Automatizări WhatsApp pentru unghii și stilizare: agenți AI care umplu agenda fără efort.",
   },
 ];
 
 export function BusinessDomains() {
   return (
-    <section id="afaceri" className="section domains">
+    <section
+      id="afaceri"
+      className="section domains"
+      aria-labelledby="domains-title"
+    >
       {/* Săptămână de programări — motiv ambiental, ecou al domeniilor */}
       <div className="signal-field signal-field--domains" aria-hidden="true">
         <svg
@@ -76,10 +100,13 @@ export function BusinessDomains() {
 
       <div className="container">
         <p className="section-label">Afaceri acoperite</p>
-        <h2 className="section-title">Domenii de activitate pe care le acoperim</h2>
+        <h2 id="domains-title" className="section-title">
+          Domenii de activitate pe care le acoperim
+        </h2>
         <p className="section-lead">
-          Construim automatizarea pe ritmul real al afacerilor locale — acolo unde
-          telefonul sună non-stop și agenda se umple greu.
+          Automatizări WhatsApp și agenți AI pentru afaceri locale din România —
+          programări automate acolo unde telefonul sună non-stop și agenda se
+          umple greu.
         </p>
 
         <ul className="domain-grid">
@@ -87,8 +114,8 @@ export function BusinessDomains() {
             <li key={d.name} className={`domain-item domain-${d.color}`}>
               <span className="domain-dot" aria-hidden="true" />
               <div>
-                <strong>{d.name}</strong>
-                <span>{d.hint}</span>
+                <h3>{d.name}</h3>
+                <p>{d.hint}</p>
               </div>
             </li>
           ))}
@@ -96,8 +123,8 @@ export function BusinessDomains() {
 
         <p className="domains-note">
           Acestea sunt doar câteva exemple. VIDIA se adaptează oricărui tip de
-          afacere bazată pe programări, dar și firmelor care oferă consultanță
-          prin WhatsApp — de la clinici și saloane, până la servicii
+          afacere bazată pe programări automate, chatbot WhatsApp sau agenți AI
+          pentru consultanță — de la clinici și saloane, până la servicii
           profesionale fără agendă clasică.
         </p>
       </div>
