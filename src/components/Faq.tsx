@@ -6,11 +6,11 @@ const faqItems = [
     answer: (
       <>
         <p>
-          <strong>Nu.</strong> Platforma VIDIA este construită integral pe bază
-          de cod propriu și nativ. Acest lucru ne oferă control absolut, elimină
-          orice dependență sau blocaj cauzat de terți, nu implică costuri
-          ascunse și îți garantează o viteză de execuție superioară și o
-          stabilitate maximă pe termen lung.
+          <strong>Nu.</strong> VIDIA este o soluție nativă de agenți AI pentru
+          automatizări WhatsApp, construită integral pe bază de cod propriu.
+          Acest lucru ne oferă control absolut, elimină orice dependență sau
+          blocaj cauzat de terți, nu implică costuri ascunse și îți garantează o
+          viteză de execuție superioară și o stabilitate maximă pe termen lung.
         </p>
       </>
     ),
@@ -42,12 +42,42 @@ const faqItems = [
     answer: (
       <>
         <p>
-          Asistentul tău digital VIDIA se conectează direct la canalul tău de
-          WhatsApp și răspunde automat clienților 24/7. Poate purta conversații
-          naturale, poate prelua date de contact, gestiona programări sau oferi
-          detalii despre prețuri și servicii — iar tu ai control total asupra
-          a ceea ce și cât de mult află clienții, fără efort manual din partea
-          ta.
+          Agenții AI pe WhatsApp de la VIDIA se conectează direct la canalul
+          tău și oferă programări automate 24/7 — o soluție dedicată pentru
+          clinici și saloane. Asistentul digital răspunde automat clienților,
+          poartă conversații naturale, preia date de contact, gestionează
+          programări și oferă detalii despre prețuri și servicii, iar tu ai
+          control total asupra a ceea ce și cât de mult află clienții, fără
+          efort manual din partea ta.
+        </p>
+      </>
+    ),
+  },
+  {
+    icon: "📅",
+    question:
+      "Cum mă ajută VIDIA să reduc programările ratate (no-show) la clinică sau salon?",
+    answer: (
+      <>
+        <p>
+          Prin intermediul notificărilor automate și al confirmărilor instant pe
+          WhatsApp. Asistentul AI trimite remindere inteligente și le permite
+          clienților să reprogrameze printr-un simplu mesaj, eliminând golurile
+          din agendă fără efort manual.
+        </p>
+      </>
+    ),
+  },
+  {
+    icon: "🏪",
+    question:
+      "Pentru ce tipuri de afaceri este potrivit sistemul de automatizare VIDIA?",
+    answer: (
+      <>
+        <p>
+          VIDIA este conceput pentru clinici stomatologice, saloane de
+          înfrumusețare, barber-shop-uri, stații ITP și cabinete, gestionând
+          programările pe WhatsApp 24/7.
         </p>
       </>
     ),
