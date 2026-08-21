@@ -747,6 +747,151 @@
   place-items: center;
 }
 
+.booking-sim-chat-stage {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.wa-sheet {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  background: rgba(11, 20, 26, 0.35);
+  animation: wa-sheet-in 0.28s ease both;
+}
+
+@keyframes wa-sheet-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.wa-sheet-panel {
+  max-height: 78%;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 1rem 1rem 0 0;
+  box-shadow: 0 -8px 28px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+  animation: wa-sheet-up 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes wa-sheet-up {
+  from {
+    transform: translateY(18%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.wa-sheet-head {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+  padding: 0.85rem 2.5rem 0.7rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.wa-sheet-title {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #111b21;
+}
+
+.wa-sheet-close {
+  position: absolute;
+  right: 0.85rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.35rem;
+  line-height: 1;
+  color: #667781;
+}
+
+.wa-sheet-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.wa-sheet-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+  background: #fff;
+}
+
+.wa-sheet-item.is-selected {
+  background: #f0f2f5;
+}
+
+.wa-sheet-item-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.wa-sheet-item-text strong {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #111b21;
+}
+
+.wa-sheet-item-text span {
+  font-size: 0.72rem;
+  color: #667781;
+}
+
+.wa-sheet-check {
+  flex-shrink: 0;
+  color: #25d366;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.wa-sheet-hint {
+  margin: 0;
+  padding: 0.75rem 1rem 1rem;
+  text-align: center;
+  font-size: 0.72rem;
+  color: #8696a0;
+}
+
+.wa-sheet-send {
+  display: block;
+  width: calc(100% - 1.5rem);
+  margin: 0.55rem 0.75rem 0.85rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 700;
+  pointer-events: none;
+}
+
 .wa-bubble-body {
   margin: 0;
 }

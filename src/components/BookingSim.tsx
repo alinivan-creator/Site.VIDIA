@@ -9,17 +9,36 @@ import { PhoneShell } from "./PhoneShell";
 import { WhatsAppBubble, WhatsAppComposer } from "./WhatsAppBubble";
 
 type SimMessage = {
+  kind: "msg";
   id: string;
   from: "client" | "ai";
   time: string;
   rich?: boolean;
   quote?: { title: string; body: string };
   body: ReactNode;
-  /** Pause after this message appears (ms). */
   holdMs: number;
-  /** Typing indicator duration before bot messages (ms). */
   typingMs?: number;
 };
+
+type ListItem = {
+  title: string;
+  subtitle: string;
+};
+
+type SimSheet = {
+  kind: "sheet";
+  id: string;
+  title: string;
+  items: ListItem[];
+  selectIndex: number;
+  /** Time before selection highlight */
+  openMs: number;
+  /** Time with item selected (+ Trimite if shown) */
+  selectMs: number;
+  showSend?: boolean;
+};
+
+type SimStep = SimMessage | SimSheet;
 
 function ListButton({ label }: { label: string }) {
   return (
@@ -61,72 +80,50 @@ function ReplyRow({ label }: { label: string }) {
   );
 }
 
-/** Flux real din clip — până la prima confirmare. */
-const SCRIPT: SimMessage[] = [
+const SERVICES: ListItem[] = [
+  { title: "Tuns Clasic", subtitle: "50 LEI · 30 min" },
+  { title: "Tuns + Barba", subtitle: "80 LEI · 45 min" },
+  { title: "Aranjat Barba", subtitle: "30 LEI · 20 min" },
+];
+
+const DAYS: ListItem[] = [
+  { title: "Miercuri, 26 Aug", subtitle: "Miercuri, 26 august" },
+  { title: "Joi, 27 Aug", subtitle: "Joi, 27 august" },
+  { title: "Vineri, 28 Aug", subtitle: "Vineri, 28 august" },
+  { title: "Luni, 31 Aug", subtitle: "Luni, 31 august" },
+  { title: "Marți, 1 Sep", subtitle: "Marți, 1 septembrie" },
+  { title: "Miercuri, 2 Sep", subtitle: "Miercuri, 2 septembrie" },
+  { title: "Joi, 3 Sep", subtitle: "Joi, 3 septembrie" },
+  { title: "Vineri, 4 Sep", subtitle: "Vineri, 4 septembrie" },
+];
+
+const HOURS: ListItem[] = [
+  { title: "13:30", subtitle: "Disponibil" },
+  { title: "14:00", subtitle: "Disponibil" },
+  { title: "14:30", subtitle: "Disponibil" },
+  { title: "15:00", subtitle: "Disponibil" },
+  { title: "15:30", subtitle: "Disponibil" },
+  { title: "16:00", subtitle: "Disponibil" },
+  { title: "16:30", subtitle: "Disponibil" },
+];
+
+/** Flux din clipul 22.08 — cu sloturi/listă deschise, până la prima confirmare. */
+const SCRIPT: SimStep[] = [
   {
+    kind: "msg",
     id: "u1",
     from: "client",
-    time: "21:57",
-    body: "Salut",
-    holdMs: 700,
+    time: "00:36",
+    body: "Salut vreau sa fac si eu o programare",
+    holdMs: 900,
   },
   {
+    kind: "msg",
     id: "b1",
     from: "ai",
-    time: "21:57",
+    time: "00:36",
     rich: true,
     typingMs: 1100,
-    body: (
-      <>
-        <p>
-          <strong>Bun venit la VIDIA!</strong>
-        </p>
-        <p>
-          Sunt asistentul virtual al VIDIA și sunt aici să vă ajut cu informații
-          despre programări, orar sau date de contact.
-        </p>
-        <p>
-          Vă informăm că datele dumneavoastră sunt prelucrate în conformitate cu
-          politica noastră de confidențialitate. Prin continuarea conversației și
-          transmiterea detaliilor, vă exprimați acordul cu privire la acest lucru.
-        </p>
-        <p>Cu ce vă pot ajuta astăzi?</p>
-      </>
-    ),
-    holdMs: 1400,
-  },
-  {
-    id: "b2",
-    from: "ai",
-    time: "21:57",
-    rich: true,
-    typingMs: 800,
-    body: (
-      <>
-        <p>Cu ce te putem ajuta?</p>
-        <div className="wa-reply-list">
-          <ReplyRow label="📅 Programare" />
-          <ReplyRow label="ℹ️ Detalii & Prețuri" />
-          <ReplyRow label="📞 Contact & Locație" />
-        </div>
-      </>
-    ),
-    holdMs: 1200,
-  },
-  {
-    id: "u2",
-    from: "client",
-    time: "21:57",
-    quote: { title: "Vidia", body: "Cu ce te putem ajuta?" },
-    body: "📅 Programare",
-    holdMs: 750,
-  },
-  {
-    id: "b3",
-    from: "ai",
-    time: "21:57",
-    rich: true,
-    typingMs: 1000,
     body: (
       <>
         <p>
@@ -142,12 +139,23 @@ const SCRIPT: SimMessage[] = [
         <ListButton label="Servicii" />
       </>
     ),
-    holdMs: 1300,
+    holdMs: 900,
   },
   {
-    id: "u3",
+    kind: "sheet",
+    id: "sheet-services",
+    title: "Servicii",
+    items: SERVICES,
+    selectIndex: 1,
+    openMs: 900,
+    selectMs: 1100,
+    showSend: false,
+  },
+  {
+    kind: "msg",
+    id: "u2",
     from: "client",
-    time: "21:57",
+    time: "00:36",
     quote: {
       title: "Vidia",
       body: "Ce serviciu dorești? Apasă Servicii și alege din listă…",
@@ -155,23 +163,24 @@ const SCRIPT: SimMessage[] = [
     body: (
       <>
         <p>
-          <strong>Aranjat Barba</strong>
+          <strong>Tuns + Barba</strong>
         </p>
-        <p>30 LEI · 20 min</p>
+        <p>80 LEI · 45 min</p>
       </>
     ),
-    holdMs: 800,
+    holdMs: 850,
   },
   {
-    id: "b4",
+    kind: "msg",
+    id: "b2",
     from: "ai",
-    time: "21:58",
+    time: "00:36",
     rich: true,
     typingMs: 1000,
     body: (
       <>
         <p>
-          <strong>Alege ziua — Aranjat Barba</strong>
+          <strong>Alege ziua — Tuns + Barba</strong>
         </p>
         <p>
           Apasă <strong>Zile disponibile</strong> (următoarele 14 zile cu locuri
@@ -180,39 +189,51 @@ const SCRIPT: SimMessage[] = [
         <ListButton label="Zile disponibile" />
       </>
     ),
-    holdMs: 1300,
+    holdMs: 900,
   },
   {
-    id: "u4",
+    kind: "sheet",
+    id: "sheet-days",
+    title: "Zile disponibile",
+    items: DAYS,
+    selectIndex: 7,
+    openMs: 1000,
+    selectMs: 1200,
+    showSend: true,
+  },
+  {
+    kind: "msg",
+    id: "u3",
     from: "client",
-    time: "21:58",
+    time: "00:36",
     quote: {
       title: "Vidia",
-      body: "Alege ziua — Aranjat Barba",
+      body: "Alege ziua — Tuns + Barba",
     },
     body: (
       <>
         <p>
-          <strong>Luni, 31 Aug</strong>
+          <strong>Vineri, 4 Sep</strong>
         </p>
-        <p>Luni, 31 august</p>
+        <p>Vineri, 4 septembrie</p>
       </>
     ),
-    holdMs: 750,
+    holdMs: 850,
   },
   {
-    id: "b5",
+    kind: "msg",
+    id: "b3",
     from: "ai",
-    time: "21:58",
+    time: "00:37",
     rich: true,
     typingMs: 1000,
     body: (
       <>
         <p>
-          <strong>Alege ora — Aranjat Barba</strong>
+          <strong>Alege ora — Tuns + Barba</strong>
         </p>
         <p>
-          Data: <span className="wa-link">Luni, 31 august</span>
+          Data: <span className="wa-link">Vineri, 4 septembrie</span>
         </p>
         <p>
           Apasă <strong>Ore libere</strong> și selectează intervalul.
@@ -220,30 +241,42 @@ const SCRIPT: SimMessage[] = [
         <ListButton label="Ore libere" />
       </>
     ),
-    holdMs: 1300,
+    holdMs: 900,
   },
   {
-    id: "u5",
+    kind: "sheet",
+    id: "sheet-hours",
+    title: "Ore libere",
+    items: HOURS,
+    selectIndex: 6,
+    openMs: 1000,
+    selectMs: 1300,
+    showSend: true,
+  },
+  {
+    kind: "msg",
+    id: "u4",
     from: "client",
-    time: "21:58",
+    time: "00:37",
     quote: {
       title: "Vidia",
-      body: "Alege ora — Aranjat Barba · Data: Luni, 31 august",
+      body: "Alege ora — Tuns + Barba · Data: Vineri, 4 septembrie",
     },
     body: (
       <>
         <p>
-          <strong>12:30</strong>
+          <strong className="wa-link">16:30</strong>
         </p>
         <p>Disponibil</p>
       </>
     ),
-    holdMs: 800,
+    holdMs: 850,
   },
   {
-    id: "b6",
+    kind: "msg",
+    id: "b4",
     from: "ai",
-    time: "21:59",
+    time: "00:37",
     rich: true,
     typingMs: 1100,
     body: (
@@ -259,15 +292,17 @@ const SCRIPT: SimMessage[] = [
           <p>
             <strong>Serviciu</strong>
           </p>
-          <p>Aranjat Barba</p>
+          <p>Tuns + Barba</p>
           <p>
             <strong>Data</strong>
           </p>
-          <p>Luni, 31 august</p>
+          <p>Vineri, 4 septembrie</p>
           <p>
             <strong>Ora</strong>
           </p>
-          <p>12:30</p>
+          <p>
+            <span className="wa-link">16:30</span>
+          </p>
         </div>
         <div className="wa-reply-list">
           <ReplyRow label="Confirmă" />
@@ -278,20 +313,22 @@ const SCRIPT: SimMessage[] = [
     holdMs: 1400,
   },
   {
-    id: "u6",
+    kind: "msg",
+    id: "u5",
     from: "client",
-    time: "21:59",
+    time: "00:37",
     quote: {
       title: "Vidia",
       body: "Îți dorești să confirmi această programare?",
     },
     body: "Confirmă",
-    holdMs: 700,
+    holdMs: 750,
   },
   {
-    id: "b7",
+    kind: "msg",
+    id: "b5",
     from: "ai",
-    time: "21:59",
+    time: "00:38",
     rich: true,
     typingMs: 900,
     body: (
@@ -314,26 +351,28 @@ const SCRIPT: SimMessage[] = [
     holdMs: 1100,
   },
   {
-    id: "b8",
+    kind: "msg",
+    id: "b6",
     from: "ai",
-    time: "21:59",
+    time: "00:38",
     rich: true,
     typingMs: 1000,
     body: (
       <>
-        <p>Salut, Alin Ivan!</p>
         <p>
-          Programarea ta pentru serviciul de <strong>Aranjat Barba</strong> este
-          confirmată pentru luni,{" "}
-          <span className="wa-link">31 august, la ora 12:30</span>.
+          <strong>Programarea ta a fost confirmată!</strong>
         </p>
         <p>
-          Pornește spre locație: [hartă] (
+          Alin Ivan, te așteptăm pentru serviciul <strong>Tuns + Barba</strong>,{" "}
+          <span className="wa-link">vineri, 4 septembrie, la ora 16:30</span>.
+        </p>
+        <p>
+          Poți porni spre locație de aici: [hartă] (
           <span className="wa-link">https://maps.app.goo.gl/9mQvC3yHxTeSW1187</span>
           )
         </p>
+        <p>Ne vedem curând!</p>
         <hr className="wa-divider" />
-        <p>Te așteptăm cu drag.</p>
         <p>
           <strong>reprogramare · anulează</strong>
         </p>
@@ -347,10 +386,9 @@ const SCRIPT: SimMessage[] = [
   },
 ];
 
-/** 1-based visibleCount when booking is confirmed (calendar save moment). */
-const CALENDAR_CALLOUT_AT = SCRIPT.findIndex((m) => m.id === "b8") + 1;
-/** 1-based visibleCount for the last details message (client maps + calendar). */
-const CLIENT_NOTE_AT = SCRIPT.length;
+const MSG_STEPS = SCRIPT.filter((s): s is SimMessage => s.kind === "msg");
+const CALENDAR_CALLOUT_AT = MSG_STEPS.findIndex((m) => m.id === "b6") + 1;
+const CLIENT_NOTE_AT = MSG_STEPS.length;
 
 function TypingDots() {
   return (
@@ -359,6 +397,57 @@ function TypingDots() {
         <span />
         <span />
         <span />
+      </div>
+    </div>
+  );
+}
+
+function WaListSheet({
+  title,
+  items,
+  selectedIndex,
+  showSend,
+}: {
+  title: string;
+  items: ListItem[];
+  selectedIndex: number | null;
+  showSend: boolean;
+}) {
+  return (
+    <div className="wa-sheet" aria-hidden="true">
+      <div className="wa-sheet-panel">
+        <div className="wa-sheet-head">
+          <p className="wa-sheet-title">{title}</p>
+          <span className="wa-sheet-close">×</span>
+        </div>
+        <ul className="wa-sheet-list">
+          {items.map((item, i) => {
+            const selected = selectedIndex === i;
+            return (
+              <li
+                key={`${item.title}-${i}`}
+                className={`wa-sheet-item${selected ? " is-selected" : ""}`}
+              >
+                <div className="wa-sheet-item-text">
+                  <strong>{item.title}</strong>
+                  <span>{item.subtitle}</span>
+                </div>
+                {selected ? (
+                  <span className="wa-sheet-check" aria-hidden="true">
+                    ✓
+                  </span>
+                ) : null}
+              </li>
+            );
+          })}
+        </ul>
+        {showSend && selectedIndex !== null ? (
+          <button type="button" className="wa-sheet-send" tabIndex={-1}>
+            Trimite
+          </button>
+        ) : (
+          <p className="wa-sheet-hint">Atinge un articol pentru a-l selecta</p>
+        )}
       </div>
     </div>
   );
@@ -383,8 +472,8 @@ function BusinessCalendarFloat({ visible }: { visible: boolean }) {
         </div>
         <div className="booking-sim-gcal-event">
           <strong>Alin Ivan</strong>
-          <span>Luni, 31 Aug. · 12:30</span>
-          <em>Aranjat Barba</em>
+          <span>Vineri, 4 Sep. · 16:30</span>
+          <em>Tuns + Barba</em>
         </div>
       </div>
       <p className="booking-sim-gcal-caption">
@@ -406,6 +495,13 @@ type BookingSimProps = {
   onComplete?: () => void;
 };
 
+type SheetView = {
+  title: string;
+  items: ListItem[];
+  selectedIndex: number | null;
+  showSend: boolean;
+};
+
 /** Auto-playing WhatsApp booking flow inside PhoneShell. */
 export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
   const rootRef = useRef<HTMLDivElement>(null);
@@ -417,6 +513,7 @@ export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
   const [fading, setFading] = useState(false);
   const [inView, setInView] = useState(capture);
   const [reduced, setReduced] = useState(false);
+  const [sheet, setSheet] = useState<SheetView | null>(null);
 
   const scrollToBottom = useEffectEvent(() => {
     const el = threadRef.current;
@@ -448,13 +545,14 @@ export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
 
   useEffect(() => {
     scrollToBottom();
-  }, [visibleCount, typing, fading]);
+  }, [visibleCount, typing, fading, sheet]);
 
   useEffect(() => {
     if (!capture && reduced) {
-      setVisibleCount(SCRIPT.length);
+      setVisibleCount(MSG_STEPS.length);
       setTyping(false);
       setFading(false);
+      setSheet(null);
       return;
     }
 
@@ -471,26 +569,50 @@ export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
     const playOnce = async () => {
       setFading(false);
       setTyping(false);
+      setSheet(null);
       setVisibleCount(0);
       await wait(capture ? 120 : 500);
       if (cancelled) return;
 
-      for (let i = 0; i < SCRIPT.length; i++) {
-        if (cancelled) return;
-        const msg = SCRIPT[i];
+      let msgIndex = 0;
 
-        if (msg.from === "ai" && msg.typingMs) {
+      for (const step of SCRIPT) {
+        if (cancelled) return;
+
+        if (step.kind === "sheet") {
+          setSheet({
+            title: step.title,
+            items: step.items,
+            selectedIndex: null,
+            showSend: false,
+          });
+          await wait(step.openMs);
+          if (cancelled) return;
+          setSheet({
+            title: step.title,
+            items: step.items,
+            selectedIndex: step.selectIndex,
+            showSend: Boolean(step.showSend),
+          });
+          await wait(step.selectMs);
+          if (cancelled) return;
+          setSheet(null);
+          continue;
+        }
+
+        if (step.from === "ai" && step.typingMs) {
           setTyping(true);
-          await wait(msg.typingMs);
+          await wait(step.typingMs);
           if (cancelled) return;
           setTyping(false);
         }
 
-        setVisibleCount(i + 1);
-        if (capture && i === 0) {
+        msgIndex += 1;
+        setVisibleCount(msgIndex);
+        if (capture && msgIndex === 1) {
           document.documentElement.dataset.bookingSimStarted = "1";
         }
-        await wait(msg.holdMs);
+        await wait(step.holdMs);
         if (cancelled) return;
       }
 
@@ -526,12 +648,12 @@ export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
     };
   }, [inView, reduced, capture]);
 
-  const messages = reduced ? SCRIPT : SCRIPT.slice(0, visibleCount);
+  const messages = reduced ? MSG_STEPS : MSG_STEPS.slice(0, visibleCount);
 
   const showCalendarCallout =
-    !fading && (reduced || visibleCount >= CALENDAR_CALLOUT_AT);
+    !fading && !sheet && (reduced || visibleCount >= CALENDAR_CALLOUT_AT);
   const showClientNote =
-    !fading && (reduced || visibleCount >= CLIENT_NOTE_AT);
+    !fading && !sheet && (reduced || visibleCount >= CLIENT_NOTE_AT);
 
   return (
     <div ref={rootRef} className="booking-sim-frame" aria-hidden="true">
@@ -551,29 +673,42 @@ export function BookingSim({ capture = false, onComplete }: BookingSimProps) {
             </div>
           </div>
 
-          <div
-            ref={threadRef}
-            className={`hero-chat-thread hero-chat-thread-light booking-sim-thread${fading ? " is-fading" : ""}`}
-          >
-            {messages.map((msg) => (
-              <WhatsAppBubble
-                key={msg.id}
-                from={msg.from}
-                view="phone"
-                aiTone="light"
-                quote={msg.quote}
-                time={msg.time}
-                className={
-                  msg.rich ? "wa-bubble-rich booking-sim-enter" : "booking-sim-enter"
-                }
-              >
-                {msg.body}
-              </WhatsAppBubble>
-            ))}
-            {typing ? <TypingDots /> : null}
-          </div>
+          <div className="booking-sim-chat-stage">
+            <div
+              ref={threadRef}
+              className={`hero-chat-thread hero-chat-thread-light booking-sim-thread${fading ? " is-fading" : ""}`}
+            >
+              {messages.map((msg) => (
+                <WhatsAppBubble
+                  key={msg.id}
+                  from={msg.from}
+                  view="phone"
+                  aiTone="light"
+                  quote={msg.quote}
+                  time={msg.time}
+                  className={
+                    msg.rich
+                      ? "wa-bubble-rich booking-sim-enter"
+                      : "booking-sim-enter"
+                  }
+                >
+                  {msg.body}
+                </WhatsAppBubble>
+              ))}
+              {typing ? <TypingDots /> : null}
+            </div>
 
-          <WhatsAppComposer light />
+            <WhatsAppComposer light />
+
+            {sheet ? (
+              <WaListSheet
+                title={sheet.title}
+                items={sheet.items}
+                selectedIndex={sheet.selectedIndex}
+                showSend={sheet.showSend}
+              />
+            ) : null}
+          </div>
         </PhoneShell>
         <p
           className={`booking-sim-client-note${showClientNote ? " is-visible" : ""}`}
