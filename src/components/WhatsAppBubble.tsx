@@ -33,9 +33,11 @@ type WhatsAppBubbleProps = {
   view?: "inbox" | "phone";
   /**
    * Culorile mesajelor AI/incoming.
-   * red = brand VIDIA (default pe hero); dark = WhatsApp clasic (gri).
+   * red = brand VIDIA; dark = WhatsApp dark; light = WhatsApp iOS light.
    */
-  aiTone?: "red" | "dark";
+  aiTone?: "red" | "dark" | "light";
+  /** Reply quote (stil WhatsApp) — de obicei pe mesajele clientului. */
+  quote?: { title: string; body: string };
   time: string;
   children: ReactNode;
   className?: string;
@@ -46,6 +48,7 @@ export function WhatsAppBubble({
   from,
   view = "inbox",
   aiTone = "red",
+  quote,
   time,
   children,
   className = "",
@@ -53,32 +56,66 @@ export function WhatsAppBubble({
   const isPhone = view === "phone";
   const alignRight = isPhone ? from === "client" : from === "ai";
   const showTicks = alignRight;
-  const tone = from === "ai" ? aiTone : isPhone ? "green" : "dark";
+  const light = aiTone === "light";
+  const tone =
+    from === "ai"
+      ? light
+        ? "light"
+        : aiTone
+      : isPhone
+        ? light
+          ? "outgoing"
+          : "green"
+        : "dark";
   const side = alignRight ? "out" : "in";
+
+  const meta = (
+    <div className={`wa-meta wa-meta-${side}${light ? " wa-meta-inline" : ""}`}>
+      <time dateTime={time}>{time}</time>
+      {showTicks ? <ReadTicks /> : null}
+    </div>
+  );
 
   return (
     <div
       className={`wa-row wa-row-${side}${className ? ` ${className}` : ""}`}
     >
       <div className={`wa-bubble wa-bubble-${tone} wa-tail-${side}`}>
+        {quote ? (
+          <div className="wa-quote">
+            <p className="wa-quote-title">{quote.title}</p>
+            <p className="wa-quote-body">{quote.body}</p>
+          </div>
+        ) : null}
         <div className="wa-bubble-body">{children}</div>
+        {light ? meta : null}
       </div>
-      <div className={`wa-meta wa-meta-${side}`}>
-        <time dateTime={time}>{time}</time>
-        {showTicks ? <ReadTicks /> : null}
-      </div>
+      {!light ? meta : null}
     </div>
   );
 }
 
 export function WhatsAppComposer({
-  placeholder = "Mesaj...",
+  placeholder = "Mesaj",
+  light = false,
 }: {
   placeholder?: string;
+  light?: boolean;
 }) {
   return (
-    <div className="wa-composer" aria-hidden="true">
+    <div
+      className={`wa-composer${light ? " wa-composer-light" : ""}`}
+      aria-hidden="true"
+    >
+      {light ? <span className="wa-composer-plus">+</span> : null}
       <div className="wa-composer-field">{placeholder}</div>
+      {light ? (
+        <span className="wa-composer-mic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+            <path d="M12 14a3 3 0 0 0 3-3V6a3 3 0 1 0-6 0v5a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.9V21h2v-3.1A7 7 0 0 0 19 11h-2Z" />
+          </svg>
+        </span>
+      ) : null}
     </div>
   );
 }
