@@ -87,41 +87,42 @@ const SERVICES: ListItem[] = [
 ];
 
 const DAYS: ListItem[] = [
+  { title: "Luni, 24 Aug", subtitle: "Luni, 24 august" },
+  { title: "Marți, 25 Aug", subtitle: "Marți, 25 august" },
   { title: "Miercuri, 26 Aug", subtitle: "Miercuri, 26 august" },
   { title: "Joi, 27 Aug", subtitle: "Joi, 27 august" },
   { title: "Vineri, 28 Aug", subtitle: "Vineri, 28 august" },
   { title: "Luni, 31 Aug", subtitle: "Luni, 31 august" },
   { title: "Marți, 1 Sep", subtitle: "Marți, 1 septembrie" },
   { title: "Miercuri, 2 Sep", subtitle: "Miercuri, 2 septembrie" },
-  { title: "Joi, 3 Sep", subtitle: "Joi, 3 septembrie" },
-  { title: "Vineri, 4 Sep", subtitle: "Vineri, 4 septembrie" },
 ];
 
 const HOURS: ListItem[] = [
-  { title: "13:30", subtitle: "Disponibil" },
+  { title: "09:00", subtitle: "Disponibil" },
+  { title: "09:30", subtitle: "Disponibil" },
+  { title: "10:00", subtitle: "Disponibil" },
+  { title: "10:30", subtitle: "Disponibil" },
+  { title: "11:00", subtitle: "Disponibil" },
+  { title: "11:30", subtitle: "Disponibil" },
+  { title: "12:00", subtitle: "Disponibil" },
   { title: "14:00", subtitle: "Disponibil" },
-  { title: "14:30", subtitle: "Disponibil" },
-  { title: "15:00", subtitle: "Disponibil" },
-  { title: "15:30", subtitle: "Disponibil" },
-  { title: "16:00", subtitle: "Disponibil" },
-  { title: "16:30", subtitle: "Disponibil" },
 ];
 
-/** Flux din clipul 22.08 — cu sloturi/listă deschise, până la prima confirmare. */
+/** Flux din clipul corect 22.08 01:02 — sloturi deschise, până la prima confirmare. */
 const SCRIPT: SimStep[] = [
   {
     kind: "msg",
     id: "u1",
     from: "client",
-    time: "00:36",
-    body: "Salut vreau sa fac si eu o programare",
+    time: "01:00",
+    body: "Salut, vreau sa fac si eu o programare",
     holdMs: 900,
   },
   {
     kind: "msg",
     id: "b1",
     from: "ai",
-    time: "00:36",
+    time: "01:00",
     rich: true,
     typingMs: 1100,
     body: (
@@ -155,7 +156,7 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "u2",
     from: "client",
-    time: "00:36",
+    time: "01:00",
     quote: {
       title: "Vidia",
       body: "Ce serviciu dorești? Apasă Servicii și alege din listă…",
@@ -174,7 +175,7 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "b2",
     from: "ai",
-    time: "00:36",
+    time: "01:00",
     rich: true,
     typingMs: 1000,
     body: (
@@ -196,7 +197,7 @@ const SCRIPT: SimStep[] = [
     id: "sheet-days",
     title: "Zile disponibile",
     items: DAYS,
-    selectIndex: 7,
+    selectIndex: 2,
     openMs: 1000,
     selectMs: 1200,
     showSend: true,
@@ -205,7 +206,7 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "u3",
     from: "client",
-    time: "00:36",
+    time: "01:00",
     quote: {
       title: "Vidia",
       body: "Alege ziua — Tuns + Barba",
@@ -213,9 +214,9 @@ const SCRIPT: SimStep[] = [
     body: (
       <>
         <p>
-          <strong>Vineri, 4 Sep</strong>
+          <strong>Miercuri, 26 Aug</strong>
         </p>
-        <p>Vineri, 4 septembrie</p>
+        <p>Miercuri, 26 august</p>
       </>
     ),
     holdMs: 850,
@@ -224,7 +225,7 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "b3",
     from: "ai",
-    time: "00:37",
+    time: "01:01",
     rich: true,
     typingMs: 1000,
     body: (
@@ -233,7 +234,7 @@ const SCRIPT: SimStep[] = [
           <strong>Alege ora — Tuns + Barba</strong>
         </p>
         <p>
-          Data: <span className="wa-link">Vineri, 4 septembrie</span>
+          Data: <span className="wa-link">Miercuri, 26 august</span>
         </p>
         <p>
           Apasă <strong>Ore libere</strong> și selectează intervalul.
@@ -248,7 +249,7 @@ const SCRIPT: SimStep[] = [
     id: "sheet-hours",
     title: "Ore libere",
     items: HOURS,
-    selectIndex: 6,
+    selectIndex: 1,
     openMs: 1000,
     selectMs: 1300,
     showSend: true,
@@ -257,15 +258,15 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "u4",
     from: "client",
-    time: "00:37",
+    time: "01:01",
     quote: {
       title: "Vidia",
-      body: "Alege ora — Tuns + Barba · Data: Vineri, 4 septembrie",
+      body: "Alege ora — Tuns + Barba · Data: Miercuri, 26 august",
     },
     body: (
       <>
         <p>
-          <strong className="wa-link">16:30</strong>
+          <strong className="wa-link">09:30</strong>
         </p>
         <p>Disponibil</p>
       </>
@@ -276,13 +277,13 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "b4",
     from: "ai",
-    time: "00:37",
+    time: "01:01",
     rich: true,
     typingMs: 1100,
     body: (
       <>
         <p>
-          <strong>Îți dorești să confirmi această programare?</strong>
+          <strong>Vrei să confirmi programarea?</strong>
         </p>
         <div className="wa-confirm-fields">
           <p>
@@ -296,12 +297,14 @@ const SCRIPT: SimStep[] = [
           <p>
             <strong>Data</strong>
           </p>
-          <p>Vineri, 4 septembrie</p>
+          <p>
+            Miercuri, <span className="wa-link">26 august</span>
+          </p>
           <p>
             <strong>Ora</strong>
           </p>
           <p>
-            <span className="wa-link">16:30</span>
+            <span className="wa-link">09:30</span>
           </p>
         </div>
         <div className="wa-reply-list">
@@ -316,10 +319,10 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "u5",
     from: "client",
-    time: "00:37",
+    time: "01:01",
     quote: {
       title: "Vidia",
-      body: "Îți dorești să confirmi această programare?",
+      body: "Vrei să confirmi programarea?",
     },
     body: "Confirmă",
     holdMs: 750,
@@ -328,7 +331,7 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "b5",
     from: "ai",
-    time: "00:38",
+    time: "01:01",
     rich: true,
     typingMs: 900,
     body: (
@@ -354,20 +357,21 @@ const SCRIPT: SimStep[] = [
     kind: "msg",
     id: "b6",
     from: "ai",
-    time: "00:38",
+    time: "01:01",
     rich: true,
     typingMs: 1000,
     body: (
       <>
         <p>
-          <strong>Programarea ta a fost confirmată!</strong>
+          Salut, <strong>Alin Ivan</strong>!
         </p>
         <p>
-          Alin Ivan, te așteptăm pentru serviciul <strong>Tuns + Barba</strong>,{" "}
-          <span className="wa-link">vineri, 4 septembrie, la ora 16:30</span>.
+          Programarea ta pentru serviciul <strong>Tuns + Barba</strong> a fost
+          confirmată pentru{" "}
+          <span className="wa-link">miercuri, 26 august, la ora 09:30</span>.
         </p>
         <p>
-          Poți porni spre locație de aici: [hartă] (
+          Dacă ai nevoie de indicații, poți folosi acest link: [hartă] (
           <span className="wa-link">https://maps.app.goo.gl/9mQvC3yHxTeSW1187</span>
           )
         </p>
@@ -472,7 +476,7 @@ function BusinessCalendarFloat({ visible }: { visible: boolean }) {
         </div>
         <div className="booking-sim-gcal-event">
           <strong>Alin Ivan</strong>
-          <span>Vineri, 4 Sep. · 16:30</span>
+          <span>Miercuri, 26 Aug. · 09:30</span>
           <em>Tuns + Barba</em>
         </div>
       </div>
