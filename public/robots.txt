@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://getvidia.ro/sitemap.xml
+Sitemap: https://www.getvidia.ro/sitemap.xml
