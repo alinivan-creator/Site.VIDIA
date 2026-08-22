@@ -3948,29 +3948,115 @@
 
 .contact-quote-trigger {
   display: block;
-  width: fit-content;
-  max-width: 32ch;
-  margin: 0 auto 1rem;
+  width: min(100%, 26rem);
+  margin: 0 auto 1.35rem;
   padding: 0;
   border: none;
   background: none;
-  font: inherit;
-  font-size: 0.95rem;
-  line-height: 1.55;
-  color: rgba(18, 18, 18, 0.52);
-  font-style: italic;
-  text-align: center;
   cursor: pointer;
-  text-decoration: underline transparent;
-  text-underline-offset: 0.2em;
-  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  text-align: center;
+  -webkit-tap-highlight-color: transparent;
 }
 
-.contact-quote-trigger:hover,
-.contact-quote-trigger:focus-visible {
+.contact-quote-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+  padding: 1.05rem 1.25rem 0.95rem;
+  border: 1px solid rgba(18, 18, 18, 0.08);
+  border-radius: calc(var(--radius-sm) + 2px);
+  background: linear-gradient(
+    165deg,
+    rgba(255, 255, 255, 0.92) 0%,
+    rgba(247, 245, 244, 0.88) 100%
+  );
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease,
+    transform 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.contact-quote-text {
+  display: block;
+  max-width: 28ch;
+  font-size: 0.98rem;
+  line-height: 1.58;
+  font-style: italic;
+  font-weight: 500;
+  color: rgba(18, 18, 18, 0.68);
+  letter-spacing: 0.01em;
+  transition: color 0.25s ease;
+}
+
+.contact-quote-text::before {
+  content: "“";
+  margin-right: 0.08em;
+  color: rgba(225, 6, 0, 0.28);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.contact-quote-text::after {
+  content: "”";
+  margin-left: 0.06em;
+  color: rgba(225, 6, 0, 0.28);
+  font-style: normal;
+  font-weight: 700;
+}
+
+.contact-quote-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: rgba(18, 18, 18, 0.42);
+  transition: color 0.25s ease, gap 0.25s ease;
+}
+
+.contact-quote-action svg {
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.contact-quote-trigger:hover .contact-quote-inner,
+.contact-quote-trigger:focus-visible .contact-quote-inner {
+  border-color: rgba(225, 6, 0, 0.22);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.9) inset,
+    0 10px 28px rgba(225, 6, 0, 0.08);
+  transform: translateY(-1px);
+}
+
+.contact-quote-trigger:hover .contact-quote-text,
+.contact-quote-trigger:focus-visible .contact-quote-text {
+  color: rgba(18, 18, 18, 0.82);
+}
+
+.contact-quote-trigger:hover .contact-quote-action,
+.contact-quote-trigger:focus-visible .contact-quote-action {
   color: var(--red);
-  text-decoration-color: rgba(225, 6, 0, 0.45);
+  gap: 0.5rem;
+}
+
+.contact-quote-trigger:hover .contact-quote-action svg,
+.contact-quote-trigger:focus-visible .contact-quote-action svg {
+  opacity: 1;
+  transform: translateX(2px);
+}
+
+.contact-quote-trigger:focus-visible {
   outline: none;
+}
+
+.contact-quote-trigger:focus-visible .contact-quote-inner {
+  outline: 2px solid rgba(225, 6, 0, 0.35);
+  outline-offset: 3px;
 }
 
 .quote-modal-root {

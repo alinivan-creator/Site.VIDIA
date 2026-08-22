@@ -39,8 +39,24 @@ export function ContactQuoteModal() {
         onClick={() => setOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={open}
+        aria-label={`${CONTACT_QUOTE} — deschide perspectiva`}
       >
-        {CONTACT_QUOTE}
+        <span className="contact-quote-inner">
+          <span className="contact-quote-text">{CONTACT_QUOTE}</span>
+          <span className="contact-quote-action" aria-hidden="true">
+            Citește perspectiva
+            <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
+              <path
+                d="M3 8h8M9 5l3 3-3 3"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </span>
+        </span>
       </button>
 
       {open ? (
