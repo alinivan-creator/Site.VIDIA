@@ -1,5 +1,4 @@
 import { useEffect, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
 import {
   CONTACT_EMAIL,
   WEB3FORMS_ACCESS_KEY,
@@ -17,6 +16,7 @@ import {
   type PlanOption,
 } from "../plans";
 import { SignalWashMarks } from "./SignalWashMarks";
+import { CompliancePanel } from "./CompliancePanel";
 
 type FormState = {
   phone: string;
@@ -405,29 +405,7 @@ export function ContactForm() {
             )}
           </div>
 
-          <aside
-            id="gdpr"
-            className="gdpr-panel gdpr-panel-below"
-            aria-labelledby="gdpr-title"
-          >
-            <p className="gdpr-kicker">GDPR</p>
-            <h3 id="gdpr-title">Conformitate și consimțământ, integrate nativ</h3>
-            <p>
-              Aspectul de conformitate legală și consimțământul clienților este
-              deja rezolvat și integrat nativ în platformă. Nu trebuie să
-              construiești fluxuri GDPR de la zero — VIDIA le include din start,
-              astfel încât comunicarea cu clienții tăi să rămână clară, corectă
-              și în siguranță.
-            </p>
-            <p className="gdpr-links">
-              Documente legale:{" "}
-              <Link to="/confidentialitate">Politica de Confidențialitate</Link>
-              {" · "}
-              <Link to="/termeni">Termeni și Condiții</Link>
-              {" · "}
-              <Link to="/cookies">Politica de Cookies</Link>
-            </p>
-          </aside>
+          <CompliancePanel />
         </div>
 
         <div className="contact-deco contact-deco-right" aria-hidden="true">

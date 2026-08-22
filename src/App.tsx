@@ -8,6 +8,7 @@ import { Privacy } from "./pages/Privacy";
 import { Cookies } from "./pages/Cookies";
 import { NichePage } from "./pages/nishe/NichePage";
 import { NICHE_SLUGS } from "./nishe/config";
+import { CookieBanner } from "./components/CookieBanner";
 import "./App.css";
 
 function ScrollManager() {
@@ -43,6 +44,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <ScrollManager />
+      <CookieBanner />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/tiktok" element={<TikTokLanding />} />

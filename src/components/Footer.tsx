@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
+import { CompliancePanel } from "./CompliancePanel";
 
 const certifications = [
   { code: "ISO 9001", label: "Managementul calității" },
@@ -134,6 +135,7 @@ export function Footer() {
         </div>
 
         <div className="footer-legal">
+          <CompliancePanel variant="compact" className="footer-compliance" />
           <nav aria-label="Documente legale">
             <Link to="/termeni">Termeni și Condiții</Link>
             <Link to="/confidentialitate">Politica de Confidențialitate</Link>
