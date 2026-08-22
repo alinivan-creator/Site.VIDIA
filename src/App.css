@@ -4062,11 +4062,17 @@
 .quote-modal-root {
   position: fixed;
   inset: 0;
-  z-index: 200;
-  display: grid;
-  place-items: center;
-  padding: 1.25rem;
-  background: rgba(18, 18, 18, 0.42);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: max(1.25rem, env(safe-area-inset-top, 0px))
+    max(1.25rem, env(safe-area-inset-right, 0px))
+    max(1.25rem, env(safe-area-inset-bottom, 0px))
+    max(1.25rem, env(safe-area-inset-left, 0px));
+  background: rgba(18, 18, 18, 0.52);
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
   animation: quote-modal-fade 0.2s ease both;
 }
 
@@ -4081,11 +4087,14 @@
 
 .quote-modal {
   width: min(100%, 28rem);
+  max-height: min(88vh, 42rem);
+  overflow-y: auto;
   padding: clamp(1.35rem, 4vw, 1.85rem);
   border-radius: calc(var(--radius) + 4px);
   background: #fff;
   color: var(--ink);
   box-shadow: 0 28px 60px rgba(18, 18, 18, 0.18);
+  overscroll-behavior: contain;
   animation: quote-modal-rise 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 

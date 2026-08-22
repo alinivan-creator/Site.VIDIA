@@ -1,8 +1,33 @@
 import { useEffect, useId, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import {
   CONTACT_QUOTE,
   CONTACT_QUOTE_MODAL,
 } from "../content/encouragement-quote";
+
+function lockBodyScroll() {
+  const scrollY = window.scrollY;
+  const { body } = document;
+  const prev = {
+    overflow: body.style.overflow,
+    position: body.style.position,
+    top: body.style.top,
+    width: body.style.width,
+  };
+
+  body.style.overflow = "hidden";
+  body.style.position = "fixed";
+  body.style.top = `-${scrollY}px`;
+  body.style.width = "100%";
+
+  return () => {
+    body.style.overflow = prev.overflow;
+    body.style.position = prev.position;
+    body.style.top = prev.top;
+    body.style.width = prev.width;
+    window.scrollTo(0, scrollY);
+  };
+}
 
 export function ContactQuoteModal() {
   const [open, setOpen] = useState(false);
@@ -18,17 +43,62 @@ export function ContactQuoteModal() {
       if (event.key === "Escape") setOpen(false);
     };
 
+    const onTouchMove = (event: TouchEvent) => {
+      const target = event.target;
+      if (!(target instanceof Element)) return;
+      if (target.closest(".quote-modal")) return;
+      event.preventDefault();
+    };
+
     document.addEventListener("keydown", onKeyDown);
-    const prevOverflow = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
+    document.addEventListener("touchmove", onTouchMove, { passive: false });
+    const unlockScroll = lockBodyScroll();
     closeRef.current?.focus();
 
     return () => {
       document.removeEventListener("keydown", onKeyDown);
-      document.body.style.overflow = prevOverflow;
+      document.removeEventListener("touchmove", onTouchMove);
+      unlockScroll();
       triggerRef.current?.focus();
     };
   }, [open]);
+
+  const modal =
+    open ? (
+      <div
+        className="quote-modal-root"
+        role="presentation"
+        onClick={() => setOpen(false)}
+      >
+        <div
+          className="quote-modal"
+          role="dialog"
+          aria-modal="true"
+          aria-labelledby={titleId}
+          aria-describedby={descId}
+          onClick={(event) => event.stopPropagation()}
+        >
+          <p className="quote-modal-label">Perspective</p>
+          <h3 id={titleId} className="quote-modal-title">
+            {CONTACT_QUOTE_MODAL.title}
+          </h3>
+          <div id={descId} className="quote-modal-body">
+            {CONTACT_QUOTE_MODAL.paragraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)}>{paragraph}</p>
+            ))}
+            <p className="quote-modal-cta">{CONTACT_QUOTE_MODAL.cta}</p>
+          </div>
+          <button
+            ref={closeRef}
+            type="button"
+            className="btn btn-primary quote-modal-close"
+            onClick={() => setOpen(false)}
+          >
+            Închide
+          </button>
+        </div>
+      </div>
+    ) : null;
 
   return (
     <>
@@ -59,41 +129,7 @@ export function ContactQuoteModal() {
         </span>
       </button>
 
-      {open ? (
-        <div
-          className="quote-modal-root"
-          role="presentation"
-          onClick={() => setOpen(false)}
-        >
-          <div
-            className="quote-modal"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby={titleId}
-            aria-describedby={descId}
-            onClick={(event) => event.stopPropagation()}
-          >
-            <p className="quote-modal-label">Perspective</p>
-            <h3 id={titleId} className="quote-modal-title">
-              {CONTACT_QUOTE_MODAL.title}
-            </h3>
-            <div id={descId} className="quote-modal-body">
-              {CONTACT_QUOTE_MODAL.paragraphs.map((paragraph) => (
-                <p key={paragraph.slice(0, 48)}>{paragraph}</p>
-              ))}
-              <p className="quote-modal-cta">{CONTACT_QUOTE_MODAL.cta}</p>
-            </div>
-            <button
-              ref={closeRef}
-              type="button"
-              className="btn btn-primary quote-modal-close"
-              onClick={() => setOpen(false)}
-            >
-              Închide
-            </button>
-          </div>
-        </div>
-      ) : null}
+      {modal ? createPortal(modal, document.body) : null}
     </>
   );
 }
