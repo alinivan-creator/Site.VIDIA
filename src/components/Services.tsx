@@ -1,10 +1,8 @@
-import { SignalField } from "./SignalField";
-
 const services = [
   {
     name: "Booking",
     title: "Programări automate",
-    text: "Clienții scriu pe WhatsApp, asistentul tău digital oferă ore libere și confirmă. Programarea apare direct în Google Calendar — zi și noapte, fără să ridici telefonul.",
+    text: "Programări nelimitate 24/7 pe WhatsApp, cu sincronizare în Google Calendar, confirmări și remindere automate — fără linie de așteptare la telefon.",
   },
   {
     name: "Consulting",
@@ -29,8 +27,6 @@ export function Services() {
           triaj inteligent și SMS Marketing personalizat prin GSM — ca să acoperi
           rezervările, conversațiile și relația cu clienții existenți.
         </p>
-
-        <SignalField variant="services" />
 
         <ul className="services-grid">
           {services.map((service) => (
