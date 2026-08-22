@@ -1,14 +1,13 @@
 import { Link } from "react-router-dom";
 import { SignalField } from "./SignalField";
-import { ENCOURAGEMENT_QUOTE } from "../content/encouragement-quote";
 
 /** Regulamentul (UE) 2024/1689 — EU AI Act, versiune RO pe EUR-Lex. */
 export const EU_AI_ACT_URL =
   "https://eur-lex.europa.eu/legal-content/RO/TXT/?uri=CELEX:32024R1689";
 
 type CompliancePanelProps = {
-  /** band = deasupra contactului; aside = sub formular; compact = subsol */
-  variant?: "band" | "aside" | "compact";
+  /** band = deasupra contactului; compact = subsol */
+  variant?: "band" | "compact";
   className?: string;
 };
 
@@ -76,7 +75,7 @@ function ComplianceBandContent() {
 }
 
 export function CompliancePanel({
-  variant = "aside",
+  variant = "compact",
   className = "",
 }: CompliancePanelProps) {
   if (variant === "band") {
@@ -120,14 +119,5 @@ export function CompliancePanel({
     );
   }
 
-  return (
-    <aside
-      id="gdpr"
-      className={`compliance-panel compliance-panel--aside gdpr-panel gdpr-panel-below ${className}`.trim()}
-      aria-label="Mesaj de încurajare"
-    >
-      <p className="compliance-aside-text">{ENCOURAGEMENT_QUOTE.lead}</p>
-      <p className="compliance-aside-close">{ENCOURAGEMENT_QUOTE.close}</p>
-    </aside>
-  );
+  return null;
 }
