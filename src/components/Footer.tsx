@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Logo } from "./Logo";
 import { CompliancePanel } from "./CompliancePanel";
+import { NICHE_FOOTER_LINKS } from "../nishe/config";
 
 const certifications = [
   { code: "ISO 9001", label: "Managementul calității" },
@@ -132,6 +133,19 @@ export function Footer() {
               </li>
             ))}
           </ul>
+        </div>
+
+        <div className="footer-niches">
+          <p className="iso-title">Programări automate pe WhatsApp</p>
+          <nav aria-label="Soluții pe nișe">
+            <ul className="footer-niche-links">
+              {NICHE_FOOTER_LINKS.map((item) => (
+                <li key={item.slug}>
+                  <Link to={item.path}>{item.label}</Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
         <div className="footer-legal">

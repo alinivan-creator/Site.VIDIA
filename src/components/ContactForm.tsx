@@ -405,7 +405,7 @@ export function ContactForm() {
             )}
           </div>
 
-          <CompliancePanel />
+          <CompliancePanel variant="aside" />
         </div>
 
         <div className="contact-deco contact-deco-right" aria-hidden="true">

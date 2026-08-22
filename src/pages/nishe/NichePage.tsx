@@ -1,11 +1,12 @@
 import { Link, Navigate, useLocation, useParams } from "react-router-dom";
 import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
-import { Seo } from "../../components/Seo";
+import { Seo, SITE_ORIGIN } from "../../components/Seo";
 import { SignalField } from "../../components/SignalField";
 import { getNiche } from "../../nishe/config";
 import { NicheSimPreview } from "../../nishe/NicheSimPreview";
 import { scrollToPricing } from "../../nishe/scrollToPricing";
+import { buildNicheServiceJsonLd } from "../../seo/site-schema";
 
 export function NichePage() {
   const { slug: paramSlug } = useParams<{ slug: string }>();
@@ -17,12 +18,20 @@ export function NichePage() {
     return <Navigate to="/" replace />;
   }
 
+  const canonical = `${SITE_ORIGIN}${pathname}`;
+
   return (
     <>
       <Seo
         title={niche.meta.title}
         description={niche.meta.description}
         path={pathname}
+        jsonLd={buildNicheServiceJsonLd({
+          name: niche.serviceType,
+          description: niche.meta.description,
+          url: canonical,
+          serviceType: niche.serviceType,
+        })}
       />
       <Header />
       <main className="niche-page">
@@ -50,6 +59,25 @@ export function NichePage() {
             <div className="niche-hero-visual">
               <NicheSimPreview niche={niche} />
             </div>
+          </div>
+        </section>
+
+        <section
+          className="section niche-content"
+          aria-labelledby="niche-content-title"
+        >
+          <div className="container niche-content-inner">
+            <h2 id="niche-content-title" className="section-title">
+              Cum ajută VIDIA {niche.label.toLowerCase()}
+            </h2>
+            {niche.contentSections.map((section) => (
+              <article key={section.heading} className="niche-content-block">
+                <h3>{section.heading}</h3>
+                {section.paragraphs.map((paragraph) => (
+                  <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+                ))}
+              </article>
+            ))}
           </div>
         </section>
 

@@ -2543,6 +2543,73 @@
   font-size: 0.9rem !important;
 }
 
+.compliance-panel--aside {
+  margin-top: 0;
+  padding: 1rem 1.15rem;
+  border-left: 3px solid rgba(225, 6, 0, 0.35);
+  background: rgba(247, 245, 244, 0.65);
+}
+
+.compliance-aside-text {
+  margin: 0;
+  font-size: 0.84rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.compliance-aside-close {
+  margin: 0.55rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: rgba(18, 18, 18, 0.45);
+  font-style: italic;
+}
+
+/* Band legal — deasupra contactului */
+.compliance-band {
+  position: relative;
+  padding: clamp(2.75rem, 6vw, 4rem) 0;
+  background: rgba(247, 245, 244, 0.72);
+  border-block: 1px solid var(--line);
+  overflow: hidden;
+}
+
+.compliance-band-inner {
+  position: relative;
+  z-index: 1;
+  max-width: 42rem;
+}
+
+.compliance-band-title {
+  margin-bottom: 1rem;
+}
+
+.compliance-band-body p {
+  color: var(--ink-soft);
+  font-size: 0.98rem;
+  line-height: 1.65;
+  margin: 0 0 0.85rem;
+}
+
+.compliance-band-body p:last-child {
+  margin-bottom: 0;
+}
+
+.compliance-band-body a {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.compliance-band-body a:hover {
+  color: var(--red-dark);
+}
+
+.compliance-band-links {
+  margin-top: 1rem !important;
+}
+
 .compliance-panel--compact {
   margin-bottom: 1rem;
   padding-bottom: 1rem;
@@ -3768,6 +3835,36 @@
   justify-content: center;
 }
 
+.niche-content {
+  background: #fff;
+}
+
+.niche-content-inner {
+  max-width: 42rem;
+}
+
+.niche-content-block {
+  margin-top: 2rem;
+}
+
+.niche-content-block h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  color: var(--ink);
+}
+
+.niche-content-block p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 0.85rem;
+}
+
+.niche-content-block p:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 900px) {
   .niche-hero-grid {
     grid-template-columns: 1fr;
@@ -3780,6 +3877,74 @@
   .niche-hero-actions {
     justify-content: center;
   }
+}
+
+/* ========== SEO targets (homepage industries) ========== */
+.seo-targets {
+  background: rgba(247, 245, 244, 0.55);
+}
+
+.seo-targets-body {
+  max-width: 44rem;
+  margin-top: 1.25rem;
+}
+
+.seo-targets-body p {
+  color: var(--ink-soft);
+  line-height: 1.65;
+  margin-bottom: 1rem;
+}
+
+.seo-targets-body strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.seo-targets-list {
+  margin: 0.5rem 0 1.25rem;
+  padding-left: 1.25rem;
+  color: var(--ink-soft);
+  line-height: 1.65;
+}
+
+.seo-targets-list li {
+  margin-bottom: 0.45rem;
+}
+
+.seo-targets-list a {
+  color: var(--red);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.seo-targets-list a:hover {
+  color: var(--ink);
+}
+
+.seo-targets-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 1.75rem;
+}
+
+.seo-targets-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--ink);
+  background: #fff;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.seo-targets-chip:hover {
+  border-color: var(--red);
+  color: var(--red);
 }
 
 /* ========== Contact ========== */
@@ -4475,6 +4640,39 @@
 
 .footer-tech {
   padding-top: 0.25rem;
+}
+
+.footer-niches {
+  padding-top: 0.25rem;
+}
+
+.footer-niche-links {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.55rem 1.25rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.footer-niche-links a {
+  color: #e8e8e8;
+  font-size: 0.92rem;
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.footer-niche-links a:hover {
+  color: var(--red);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+@media (max-width: 640px) {
+  .footer-niche-links {
+    grid-template-columns: 1fr;
+  }
 }
 
 .tech-logos {

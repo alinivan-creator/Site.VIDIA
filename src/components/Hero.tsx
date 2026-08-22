@@ -25,18 +25,14 @@ export function Hero() {
       <div className="container hero-grid">
         <div className="hero-copy">
           <h1 id="hero-title">
-            <span className="hero-title-accent">VIDIA:</span> Automatizează
-            conversațiile, crește numărul de programări și oferă consultanță
-            24/7.
+            <span className="hero-title-accent">VIDIA:</span> Agenți AI și
+            automatizări WhatsApp pentru programări automate 24/7
           </h1>
           <p className="hero-sub">
-            Transformă WhatsApp-ul în propriul tău canal automatizat de
-            performanță. VIDIA, partenerul tău virtual, răspunde simultan la un
-            număr nelimitat de clienți — fără linie de așteptare —, preia
-            automat programările, răspunde instant la întrebări despre
-            servicii, prețuri sau program, și oferă consultanță detaliată
-            despre produsele tale — de la detalii tehnice și garanții, până la
-            politici de retur.
+            Asistenți AI care transformă WhatsApp-ul în canalul tău principal
+            de performanță: programări automate pe WhatsApp, consultanță și
+            triaj conversațional, plus SMS marketing și campanii promo prin SMS
+            — fără linie de așteptare, zi și noite.
           </p>
           <p className="hero-pillars" aria-label="Servicii VIDIA">
             <span>Programări</span>

@@ -13,6 +13,7 @@ export type SeoProps = {
   ogDescription?: string;
   ogImage?: string;
   noindex?: boolean;
+  jsonLd?: Record<string, unknown>;
 };
 
 export function Seo({
@@ -24,6 +25,7 @@ export function Seo({
   ogDescription,
   ogImage = DEFAULT_OG_IMAGE,
   noindex = false,
+  jsonLd,
 }: SeoProps) {
   const resolvedCanonical = canonical ?? `${SITE_ORIGIN}${path ?? "/"}`;
 
@@ -51,6 +53,9 @@ export function Seo({
       <meta name="twitter:title" content={ogTitle ?? title} />
       <meta name="twitter:description" content={ogDescription ?? description} />
       <meta name="twitter:image" content={ogImage} />
+      {jsonLd ? (
+        <script type="application/ld+json">{JSON.stringify(jsonLd)}</script>
+      ) : null}
     </Helmet>
   );
 }
