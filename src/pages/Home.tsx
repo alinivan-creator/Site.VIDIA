@@ -18,9 +18,9 @@ import { Footer } from "../components/Footer";
 import { SignalReveal } from "../components/SignalReveal";
 
 /**
- * Ordine DOM aliniată 1:1 cu meniul (Avantaje nu apare în meniu):
- * Hero → Servicii → Industrii → Avantaje → Demo → Afaceri → Cum funcționează → Prețuri →
- * Conformitate → Formular contact → Contact rapid → FAQ → Despre
+ * Ordine DOM (Servicii deasupra contact, după Prețuri):
+ * Hero → Industrii → Avantaje → Demo → Afaceri → Cum funcționează → Prețuri →
+ * Conformitate → Servicii → Formular contact → Contact rapid → FAQ → Despre
  */
 export function Home() {
   return (
@@ -35,7 +35,6 @@ export function Home() {
       <main>
         <SignalReveal />
         <Hero />
-        <ServicesOffer />
         <SeoTargetSection />
         <Advantages />
         <ChatMockups />
@@ -43,6 +42,7 @@ export function Home() {
         <HowItWorks />
         <Pricing />
         <CompliancePanel variant="band" />
+        <ServicesOffer />
         <ContactForm />
         <ContactChannels />
         <Faq />

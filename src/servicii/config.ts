@@ -158,4 +158,24 @@ export const HOMEPAGE_SERVICES = [
       path: "/servicii/integrare-calendar-existent",
     },
   },
+  {
+    id: "consulting",
+    tag: "Consulting",
+    title: "Triaj conversațional și fluxuri WhatsApp",
+    description:
+      "Asistent IA pentru conversații, triaj și interacțiuni nelimitate — răspunsuri la întrebări frecvente, calificare lead-uri și suport clienți 24/7.",
+    priceLabel: "De la 180 lei/lună",
+    priceNote: "Conform grilei de abonament Consulting.",
+    cta: { type: "pricing" as const, label: "Vezi prețurile" },
+  },
+  {
+    id: "sms-marketing",
+    tag: "SMS",
+    title: "SMS marketing și campanii promo",
+    description:
+      "Campanii personalizate către clienții existenți: oferte sezoniere, reactivare clienți inactivi și remindere — fără abonament obligatoriu.",
+    priceLabel: "De la 1,80 lei / SMS + TVA",
+    priceNote: "Taxă campanie 375 lei + TVA doar în lunile active.",
+    cta: { type: "pricing" as const, label: "Vezi prețurile" },
+  },
 ] as const;
