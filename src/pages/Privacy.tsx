@@ -3,7 +3,11 @@ import { LegalLayout } from "./LegalLayout";
 
 export function Privacy() {
   return (
-    <LegalLayout title="Politica de Confidențialitate">
+    <LegalLayout
+      title="Politica de Confidențialitate"
+      description="Politica de confidențialitate VIDIA — cum prelucrăm datele personale conform GDPR."
+      path="/confidentialitate"
+    >
       <p className="legal-updated">Ultima actualizare: 5 august 2026</p>
 
       <h2>1. Cine suntem</h2>

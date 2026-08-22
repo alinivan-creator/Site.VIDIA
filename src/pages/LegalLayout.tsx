@@ -1,15 +1,23 @@
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
 import { Logo } from "../components/Logo";
+import { Seo } from "../components/Seo";
 
 type LegalPageProps = {
   title: string;
+  description: string;
+  path: string;
   children: ReactNode;
 };
 
-export function LegalLayout({ title, children }: LegalPageProps) {
+export function LegalLayout({ title, description, path, children }: LegalPageProps) {
   return (
     <div className="legal-page">
+      <Seo
+        title={`${title} | GetVidia`}
+        description={description}
+        path={path}
+      />
       <header className="legal-top">
         <div className="container legal-top-inner">
           <Logo />

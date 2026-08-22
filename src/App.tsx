@@ -6,6 +6,8 @@ import { TikTokAdCapture } from "./pages/TikTokAdCapture";
 import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import { Cookies } from "./pages/Cookies";
+import { NichePage } from "./pages/nishe/NichePage";
+import { NICHE_SLUGS } from "./nishe/config";
 import "./App.css";
 
 function ScrollManager() {
@@ -18,10 +20,19 @@ function ScrollManager() {
   }, []);
 
   useEffect(() => {
-    // Evită saltul la secțiuni vechi (#despre etc.) la refresh / reintrare.
-    if (window.location.hash) {
-      history.replaceState(null, "", pathname || "/");
+    const hash = window.location.hash.replace("#", "");
+    if (hash) {
+      requestAnimationFrame(() => {
+        const target = document.getElementById(hash);
+        if (!target) return;
+        const header = document.querySelector(".site-header") as HTMLElement | null;
+        const offset = (header?.offsetHeight ?? 72) + 12;
+        const top = target.getBoundingClientRect().top + window.scrollY - offset;
+        window.scrollTo({ top: Math.max(0, top), behavior: "auto" });
+      });
+      return;
     }
+
     window.scrollTo({ top: 0, behavior: "auto" });
   }, [pathname]);
 
@@ -39,6 +50,10 @@ export default function App() {
         <Route path="/termeni" element={<Terms />} />
         <Route path="/confidentialitate" element={<Privacy />} />
         <Route path="/cookies" element={<Cookies />} />
+        <Route path="/nishe/:slug" element={<NichePage />} />
+        {NICHE_SLUGS.map((slug) => (
+          <Route key={slug} path={`/${slug}`} element={<NichePage />} />
+        ))}
       </Routes>
     </BrowserRouter>
   );

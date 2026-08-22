@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /tiktok-ad
 
 Sitemap: https://www.getvidia.ro/sitemap.xml

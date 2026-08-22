@@ -3,7 +3,11 @@ import { LegalLayout } from "./LegalLayout";
 
 export function Cookies() {
   return (
-    <LegalLayout title="Politica de Cookies">
+    <LegalLayout
+      title="Politica de Cookies"
+      description="Politica de cookies VIDIA — ce cookie-uri folosim pe getvidia.ro și cum le poți gestiona."
+      path="/cookies"
+    >
       <p className="legal-updated">Ultima actualizare: 5 august 2026</p>
 
       <h2>1. Ce sunt cookie-urile</h2>

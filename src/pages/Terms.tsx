@@ -3,7 +3,11 @@ import { LegalLayout } from "./LegalLayout";
 
 export function Terms() {
   return (
-    <LegalLayout title="Termeni și Condiții">
+    <LegalLayout
+      title="Termeni și Condiții"
+      description="Termenii și condițiile de utilizare a platformei VIDIA și a site-ului getvidia.ro."
+      path="/termeni"
+    >
       <p className="legal-updated">Ultima actualizare: 5 august 2026</p>
 
       <h2>1. Acceptarea termenilor</h2>

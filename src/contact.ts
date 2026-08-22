@@ -22,6 +22,7 @@ export function buildLeadMailto(fields: {
   email: string;
   businessType: string;
   plan: string;
+  planDetails?: string;
 }): string {
   const subject = `Solicitare VIDIA — ${fields.plan}`;
   const body = [
@@ -31,6 +32,9 @@ export function buildLeadMailto(fields: {
     `E-mail: ${fields.email}`,
     `Tip afacere: ${fields.businessType}`,
     `Plan dorit: ${fields.plan}`,
+    ...(fields.planDetails
+      ? [`Detalii pachet: ${fields.planDetails}`]
+      : []),
   ].join("\n");
 
   return `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;

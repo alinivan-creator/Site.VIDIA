@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Seo } from "../components/Seo";
 import { BookingSim } from "../components/BookingSim";
 
 function VidiaMark({ onRed = false }: { onRed?: boolean }) {
@@ -45,7 +46,14 @@ export function TikTokAdCapture() {
   }, [banner]);
 
   return (
-    <main className={`tiktok-ad-capture${banner ? " is-banner" : ""}`}>
+    <>
+      <Seo
+        title="GetVidia — captură demo"
+        description="Pagină internă pentru captură video demo VIDIA."
+        path="/tiktok-ad"
+        noindex
+      />
+      <main className={`tiktok-ad-capture${banner ? " is-banner" : ""}`}>
       {!forceEnd && (
         <div className="tiktok-ad-chat">
           <p className="tiktok-ad-badge">VIDIA · WhatsApp</p>
@@ -71,5 +79,6 @@ export function TikTokAdCapture() {
         </div>
       </section>
     </main>
+    </>
   );
 }

@@ -12,6 +12,7 @@ import {
   PLAN_OPTIONS,
   clearSelectedPlan,
   readSelectedPlan,
+  readSelectedPlanDetails,
   saveSelectedPlan,
   type PlanOption,
 } from "../plans";
@@ -22,6 +23,7 @@ type FormState = {
   email: string;
   businessType: string;
   plan: PlanOption | "";
+  planDetails: string;
   honey: string;
 };
 
@@ -30,6 +32,7 @@ const initial: FormState = {
   email: "",
   businessType: "",
   plan: "",
+  planDetails: "",
   honey: "",
 };
 
@@ -39,6 +42,7 @@ export function ContactForm() {
   const [form, setForm] = useState<FormState>(() => ({
     ...initial,
     plan: readSelectedPlan(),
+    planDetails: readSelectedPlanDetails(),
   }));
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>(
     {},
@@ -48,17 +52,23 @@ export function ContactForm() {
   const [submitError, setSubmitError] = useState<string | null>(null);
 
   useEffect(() => {
-    const applyPlan = (plan: PlanOption | "") => {
+    const applyPlan = (plan: PlanOption | "", details?: string) => {
       if (!plan) return;
-      setForm((prev) => ({ ...prev, plan }));
+      setForm((prev) => ({
+        ...prev,
+        plan,
+        planDetails: details ?? prev.planDetails,
+      }));
       setErrors((prev) => ({ ...prev, plan: undefined }));
     };
 
-    applyPlan(readSelectedPlan());
+    applyPlan(readSelectedPlan(), readSelectedPlanDetails());
 
     const onPlanSelected = (event: Event) => {
-      const detail = (event as CustomEvent<{ plan: PlanOption }>).detail;
-      if (detail?.plan) applyPlan(detail.plan);
+      const detail = (
+        event as CustomEvent<{ plan: PlanOption; details?: string }>
+      ).detail;
+      if (detail?.plan) applyPlan(detail.plan, detail.details);
     };
 
     window.addEventListener(PLAN_EVENT, onPlanSelected);
@@ -90,6 +100,7 @@ export function ContactForm() {
     email: form.email.trim(),
     businessType: form.businessType.trim(),
     plan: form.plan,
+    planDetails: form.planDetails.trim() || undefined,
   });
 
   const onMailtoSubmit = () => {
@@ -145,6 +156,9 @@ export function ContactForm() {
             `E-mail: ${fields.email}`,
             `Tip afacere: ${fields.businessType}`,
             `Plan dorit: ${fields.plan}`,
+            ...(fields.planDetails
+              ? [`Detalii pachet: ${fields.planDetails}`]
+              : []),
           ].join("\n"),
         }),
       });
@@ -321,7 +335,7 @@ export function ContactForm() {
                     value={form.plan}
                     onChange={(e) => {
                       const value = e.target.value as PlanOption | "";
-                      setForm({ ...form, plan: value });
+                      setForm({ ...form, plan: value, planDetails: "" });
                       if (value) saveSelectedPlan(value);
                     }}
                     aria-invalid={Boolean(errors.plan)}
@@ -339,6 +353,9 @@ export function ContactForm() {
                   </select>
                   {errors.plan && (
                     <span className="field-error">{errors.plan}</span>
+                  )}
+                  {form.planDetails && (
+                    <p className="field-plan-details">{form.planDetails}</p>
                   )}
                 </div>
 
