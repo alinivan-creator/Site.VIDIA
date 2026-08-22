@@ -1,7 +1,6 @@
 import { Header } from "../components/Header";
 import { Hero } from "../components/Hero";
 import { Seo } from "../components/Seo";
-import { Services } from "../components/Services";
 import { SeoTargetSection } from "../components/SeoTargetSection";
 import { buildHomeJsonLd } from "../seo/site-schema";
 import { Advantages } from "../components/Advantages";
@@ -19,7 +18,7 @@ import { SignalReveal } from "../components/SignalReveal";
 
 /**
  * Ordine DOM aliniată 1:1 cu meniul (Avantaje nu apare în meniu):
- * Hero → Servicii → Avantaje → Demo → Afaceri → Cum funcționează → Prețuri →
+ * Hero → Industrii → Avantaje → Demo → Afaceri → Cum funcționează → Prețuri →
  * Conformitate → Formular contact → Contact rapid → FAQ → Despre
  */
 export function Home() {
@@ -35,7 +34,6 @@ export function Home() {
       <main>
         <SignalReveal />
         <Hero />
-        <Services />
         <SeoTargetSection />
         <Advantages />
         <ChatMockups />
