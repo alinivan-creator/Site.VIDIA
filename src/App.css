@@ -3280,7 +3280,15 @@
 .calc-options {
   display: flex;
   flex-direction: column;
-  gap: 0.65rem;
+  gap: 0.45rem;
+}
+
+.calc-base-price {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--ink);
 }
 
 .calc-options-heading {
