@@ -29,42 +29,42 @@ export const SERVICE_SLUGS: ServiceSlug[] = [
 export const SERVICES: Record<ServiceSlug, ServiceConfig> = {
   "creare-site-calendar": {
     slug: "creare-site-calendar",
-    label: "Site nou + calendar",
-    offerLabel: "Creare site nou cu calendar WhatsApp integrat",
-    heroTitle: "Creare site nou cu calendar de programări WhatsApp integrat",
+    label: "Site nou + widget",
+    offerLabel: "Creare site nou cu widget de programare integrat",
+    heroTitle: "Creare site nou cu widget de programare integrat",
     heroSubtitle:
-      "Pachet complet pentru antreprenori: site de prezentare rapid, optimizat SEO, design modern VIDIA — cu asistentul IA și programările automate active din prima zi.",
+      "Pachet complet pentru antreprenori: site de prezentare rapid, optimizat SEO, design modern — cu widget-ul VIDIA de programări încorporat din prima zi, conectat la fluxurile tale reale de rezervare.",
     meta: {
       title:
-        "Creare Site Nou cu Calendar Programări WhatsApp integrat | VIDIA",
+        "Creare Site Nou cu Widget Programări Integrat | VIDIA",
       description:
-        "Site de prezentare nou + automatizare WhatsApp și calendar integrat. Ofertă personalizată pentru saloane, clinici și afaceri locale din România.",
+        "Site de prezentare nou cu widget de programare integrat pe pagină. Ofertă personalizată pentru saloane, clinici și afaceri locale din România.",
     },
     benefits: [
       "Design minimalist, rapid și optimizat pentru Google",
-      "Programări WhatsApp 24/7 incluse din lansare",
-      "Un singur partener: site + automatizare + suport",
-      "Ofertă personalizată în funcție de numărul de servicii și locații",
+      "Widget de programare integrat vizibil pe site — fără aplicații separate",
+      "Un singur partener: site + widget + automatizare + suport",
+      "Ofertă personalizată în funcție de servicii, sloturi și locații",
     ],
     contentSections: [
       {
         heading: "Tot ce ai nevoie pentru a începe online",
         paragraphs: [
-          "Multe afaceri locale încep cu un site simplu și adaugă programările mai târziu — pierzând luni de apeluri și mesaje WhatsApp nerăspunse. Pachetul VIDIA „Site nou + calendar” livrează ambele din start: identitate digitală clară și un asistent IA care preia programările direct pe WhatsApp.",
-          "Construim site-ul pe baza informațiilor tale (servicii, prețuri orientative, locație, echipă), cu structură SEO pentru piața din România și accente vizuale aliniate brandului VIDIA: alb, negru, roșu.",
+          "Multe afaceri locale lansează un site frumos, dar trimit clienții la telefon sau la un link extern pentru programări — și pierd conversii. Pachetul VIDIA „Site nou + widget” livrează ambele din start: identitate digitală clară și un widget de programare integrat direct în paginile site-ului.",
+          "Construim site-ul pe baza informațiilor tale (servicii, prețuri orientative, locație, echipă), cu structură SEO pentru piața din România. Widget-ul permite alegerea serviciului, a intervalului și confirmarea — totul fără ca vizitatorul să părăsească site-ul tău.",
         ],
       },
       {
         heading: "Ce include pachetul",
         paragraphs: [
-          "Site de prezentare responsiv, pagini esențiale (Acasă, Servicii, Contact), integrare WhatsApp Business, flux de programări automate, sincronizare Google Calendar și instruire scurtă pentru echipa ta.",
-          "Prețul se stabilește personalizat — depinde de numărul de pagini, servicii configurate, calendare și eventuale funcții suplimentare (SMS marketing, triaj consulting). Nu afișăm un tarif fix online tocmai ca să adaptăm soluția la realitatea afacerii tale.",
+          "Site de prezentare responsiv, pagini esențiale (Acasă, Servicii, Contact), widget de programare integrat (buton sau secțiune dedicată), conectare la backend-ul VIDIA, sincronizare cu disponibilitatea reală și instruire scurtă pentru echipa ta.",
+          "Prețul se stabilește personalizat — depinde de numărul de pagini, servicii configurate, sloturi de programare și funcții suplimentare (SMS marketing, triaj consulting). Nu afișăm un tarif fix online tocmai ca să adaptăm soluția la realitatea afacerii tale.",
         ],
       },
       {
         heading: "Pentru cine este ideal",
         paragraphs: [
-          "Saloane, clinici stomatologice, barber-shop-uri, stații ITP, cabinete veterinare sau orice business local care pornește de la zero online și vrea programări fără a jongla cu aplicații separate.",
+          "Saloane, clinici stomatologice, barber-shop-uri, stații ITP, cabinete veterinare sau orice business local care pornește de la zero online și vrea ca programările să se facă direct de pe site, nu prin tool-uri disparate.",
           "Completează formularul de mai jos sau apasă „Solicită ofertă personalizată” — revenim cu o propunere clară, termene și pașii de implementare.",
         ],
       },
@@ -72,19 +72,19 @@ export const SERVICES: Record<ServiceSlug, ServiceConfig> = {
   },
   "integrare-calendar-existent": {
     slug: "integrare-calendar-existent",
-    label: "Integrare site existent",
-    offerLabel: "Integrare calendar programări pe site existent",
-    heroTitle: "Integrare calendar de programări pe site-ul tău existent",
+    label: "Widget pe site existent",
+    offerLabel: "Integrare widget de programare pe site existent",
+    heroTitle: "Integrare widget de programări pe site-ul tău existent",
     heroSubtitle:
-      "Ai deja un site funcțional? Adăugăm widget-ul VIDIA, fluxurile WhatsApp și inteligența artificială — indiferent de platformă (WordPress, Wix, custom sau alt CMS).",
+      "Ai deja un site funcțional? Încorporăm widget-ul VIDIA de programare în platforma ta actuală — indiferent de CMS (WordPress, Wix, custom sau alt sistem).",
     meta: {
-      title: "Integrare Calendar Programări pe Site Existent | VIDIA",
+      title: "Integrare Widget Programări pe Site Existent | VIDIA",
       description:
-        "Integrăm programări WhatsApp și calendar pe site-ul tău actual. Ofertă personalizată în funcție de platformă, fluxuri și număr de calendare.",
+        "Adăugăm widget de programare integrat pe site-ul tău actual. Ofertă personalizată în funcție de platformă, servicii și fluxuri de rezervare.",
     },
     benefits: [
       "Păstrezi site-ul și domeniul pe care le ai deja",
-      "Integrare widget + WhatsApp fără reconstrucție completă",
+      "Widget integrat în pagini cheie — fără reconstrucție completă",
       "Compatibil cu majoritatea platformelor web",
       "Ofertă adaptată complexității tehnice reale",
     ],
@@ -92,15 +92,15 @@ export const SERVICES: Record<ServiceSlug, ServiceConfig> = {
       {
         heading: "De ce integrare, nu site nou",
         paragraphs: [
-          "Dacă ai investit deja într-un site care arată bine și este indexat în Google, nu are sens să o iei de la zero. VIDIA se conectează la infrastructura existentă: adăugăm buton sau widget de programare, legăm WhatsApp-ul afacerii tale și configurăm asistentul IA pe serviciile deja listate.",
-          "Clienții rămân pe site-ul familiar, dar experiența de rezervare devine conversațională — mesaje, confirmări și remindere pe WhatsApp, fără cozi la telefon.",
+          "Dacă ai investit deja într-un site care arată bine și este indexat în Google, nu are sens să o iei de la zero. VIDIA adaugă un widget de programare integrat în paginile unde clienții iau decizia: servicii, contact, pagini de landing.",
+          "Vizitatorii rămân pe site-ul familiar, aleg serviciul și intervalul din widget, iar rezervarea se procesează în backend-ul VIDIA — confirmări și remindere automate, fără cozi la telefon.",
         ],
       },
       {
         heading: "Cum lucrăm tehnic",
         paragraphs: [
-          "Analizăm platforma actuală (WordPress, Shopify, site static, page builder etc.), identificăm punctele de integrare și implementăm widget-ul sau link-urile deep către WhatsApp. Calendarul echipei se sincronizează cu Google Calendar, iar tu controlezi ce poate rezerva asistentul.",
-          "Fiecare proiect are particularități — de la un singur calendar la mai multe locații — de aceea oferta se personalizează după un scurt call sau formular de brief.",
+          "Analizăm platforma actuală (WordPress, Shopify, site static, page builder etc.), identificăm locurile optime pentru widget și implementăm embed-ul (script, iframe sau componentă custom). Disponibilitatea se sincronizează cu calendarul echipei, iar tu controlezi ce poate fi rezervat online.",
+          "Fiecare proiect are particularități — de la un singur punct de programare la mai multe locații — de aceea oferta se personalizează după un scurt call sau formular de brief.",
         ],
       },
       {
@@ -137,9 +137,9 @@ export const HOMEPAGE_SERVICES = [
   {
     id: "site-calendar",
     tag: "Pachet complet",
-    title: "Creare site nou + calendar integrat",
+    title: "Creare site nou + widget de programare integrat",
     description:
-      "Dezvoltăm site-ul de la zero (rapid, optimizat SEO, design modern) cu sistemul VIDIA integrat din prima zi.",
+      "Dezvoltăm site-ul de la zero (rapid, optimizat SEO, design modern) cu widget-ul VIDIA de programări încorporat din prima zi — clienții rezervă direct pe site.",
     cta: {
       type: "page" as const,
       label: "Solicită oferta",
@@ -149,9 +149,9 @@ export const HOMEPAGE_SERVICES = [
   {
     id: "integrare",
     tag: "Integrare",
-    title: "Integrare calendar pe site existent",
+    title: "Integrare widget de programări pe site existent",
     description:
-      "Ai deja un site funcțional? Integrăm widget-ul de programări și fluxurile WhatsApp direct în platforma ta actuală.",
+      "Ai deja un site funcțional? Integrăm widget-ul de programare VIDIA în paginile tale — fără reconstrucție, indiferent de platformă.",
     cta: {
       type: "page" as const,
       label: "Solicită oferta",

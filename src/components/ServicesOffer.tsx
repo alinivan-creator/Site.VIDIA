@@ -9,8 +9,9 @@ export function ServicesOffer() {
         <p className="section-label">Servicii</p>
         <h2 className="section-title">Ce oferim pentru afacerea ta</h2>
         <p className="section-lead">
-          De la programări automate pe WhatsApp, la site-uri noi sau integrări
-          pe platforma pe care o ai deja — soluții clare, implementare rapidă.
+          De la programări automate pe WhatsApp, la site-uri noi cu widget integrat
+          sau adăugarea widget-ului pe platforma pe care o ai deja — soluții clare,
+          implementare rapidă.
         </p>
 
         <ul className="services-grid">
