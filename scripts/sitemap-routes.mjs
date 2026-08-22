@@ -12,6 +12,17 @@ const NICHE_SLUGS = [
   "cabinet-veterinar",
 ];
 
+const SERVICE_SLUGS = [
+  "creare-site-calendar",
+  "integrare-calendar-existent",
+];
+
+const serviceRoutes = SERVICE_SLUGS.map((slug) => ({
+  path: `/servicii/${slug}`,
+  changefreq: "monthly",
+  priority: "0.8",
+}));
+
 const nicheRoutes = NICHE_SLUGS.flatMap((slug) => [
   { path: `/nishe/${slug}`, changefreq: "monthly", priority: "0.85" },
   { path: `/${slug}`, changefreq: "monthly", priority: "0.85" },
@@ -23,5 +34,6 @@ export const SITEMAP_ROUTES = [
   { path: "/termeni", changefreq: "monthly", priority: "0.4" },
   { path: "/confidentialitate", changefreq: "monthly", priority: "0.4" },
   { path: "/cookies", changefreq: "monthly", priority: "0.3" },
+  ...serviceRoutes,
   ...nicheRoutes,
 ];

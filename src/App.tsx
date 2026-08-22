@@ -7,6 +7,7 @@ import { Terms } from "./pages/Terms";
 import { Privacy } from "./pages/Privacy";
 import { Cookies } from "./pages/Cookies";
 import { NichePage } from "./pages/nishe/NichePage";
+import { ServicePage } from "./pages/servicii/ServicePage";
 import { NICHE_SLUGS } from "./nishe/config";
 import { CookieBanner } from "./components/CookieBanner";
 import "./App.css";
@@ -53,6 +54,7 @@ export default function App() {
         <Route path="/confidentialitate" element={<Privacy />} />
         <Route path="/cookies" element={<Cookies />} />
         <Route path="/nishe/:slug" element={<NichePage />} />
+        <Route path="/servicii/:slug" element={<ServicePage />} />
         {NICHE_SLUGS.map((slug) => (
           <Route key={slug} path={`/${slug}`} element={<NichePage />} />
         ))}

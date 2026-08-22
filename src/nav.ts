@@ -1,5 +1,6 @@
 /** Ordinea meniului = ordinea secțiunilor în DOM (fără Hero / Contact). */
 export const NAV_SECTIONS = [
+  { id: "servicii", label: "Servicii" },
   { id: "demo", label: "Simulări" },
   { id: "afaceri", label: "Afaceri acoperite" },
   { id: "cum-functioneaza", label: "Cum funcționează" },

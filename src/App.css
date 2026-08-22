@@ -2353,6 +2353,98 @@
   font-size: 1rem;
 }
 
+.service-price {
+  margin: 0.85rem 0 0;
+  font-size: 0.95rem;
+  color: var(--ink);
+}
+
+.service-price strong {
+  display: block;
+  font-size: 1.1rem;
+  color: var(--red);
+}
+
+.service-price-note {
+  display: block;
+  margin-top: 0.2rem;
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+}
+
+.service-item-cta {
+  margin-top: 1.25rem;
+}
+
+.service-item-cta .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+.services-offer {
+  background: #fff;
+}
+
+.service-benefits {
+  background: rgba(247, 245, 244, 0.55);
+  padding-top: 0;
+  padding-bottom: clamp(2rem, 4vw, 2.75rem);
+}
+
+.service-benefits-list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.65rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.service-benefits-list li {
+  position: relative;
+  padding-left: 1.1rem;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+}
+
+.service-benefits-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.55em;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.service-cta-band {
+  background: rgba(247, 245, 244, 0.72);
+  border-top: 1px solid var(--line);
+}
+
+.service-cta-inner {
+  text-align: center;
+  max-width: 36rem;
+  margin-inline: auto;
+}
+
+.service-cta-inner .section-lead {
+  margin-inline: auto;
+}
+
+.service-cta-inner .btn {
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 720px) {
+  .service-benefits-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 .plan-price-block {
   margin: 1rem 0 1.35rem;
   display: flex;

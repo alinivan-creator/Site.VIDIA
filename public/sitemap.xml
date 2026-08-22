@@ -31,6 +31,18 @@
     <priority>0.3</priority>
   </url>
   <url>
+    <loc>https://www.getvidia.ro/servicii/creare-site-calendar</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.getvidia.ro/servicii/integrare-calendar-existent</loc>
+    <lastmod>2026-08-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.getvidia.ro/nishe/stomatologie</loc>
     <lastmod>2026-08-22</lastmod>
     <changefreq>monthly</changefreq>
