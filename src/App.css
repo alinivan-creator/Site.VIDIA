@@ -3929,31 +3929,6 @@
   color: var(--ink);
 }
 
-.seo-targets-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.55rem;
-  margin-top: 1.75rem;
-}
-
-.seo-targets-chip {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.45rem 0.85rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--ink);
-  background: #fff;
-  transition: border-color 0.2s, color 0.2s;
-}
-
-.seo-targets-chip:hover {
-  border-color: var(--red);
-  color: var(--red);
-}
-
 /* ========== Contact ========== */
 .contact-stage {
   display: grid;
@@ -3971,14 +3946,109 @@
   margin-bottom: 2rem;
 }
 
-.contact-quote {
-  margin: 0 0 1rem;
+.contact-quote-trigger {
+  display: block;
+  width: fit-content;
   max-width: 32ch;
-  margin-inline: auto;
+  margin: 0 auto 1rem;
+  padding: 0;
+  border: none;
+  background: none;
+  font: inherit;
   font-size: 0.95rem;
   line-height: 1.55;
   color: rgba(18, 18, 18, 0.52);
   font-style: italic;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: underline transparent;
+  text-underline-offset: 0.2em;
+  transition: color 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.contact-quote-trigger:hover,
+.contact-quote-trigger:focus-visible {
+  color: var(--red);
+  text-decoration-color: rgba(225, 6, 0, 0.45);
+  outline: none;
+}
+
+.quote-modal-root {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+  background: rgba(18, 18, 18, 0.42);
+  animation: quote-modal-fade 0.2s ease both;
+}
+
+@keyframes quote-modal-fade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.quote-modal {
+  width: min(100%, 28rem);
+  padding: clamp(1.35rem, 4vw, 1.85rem);
+  border-radius: calc(var(--radius) + 4px);
+  background: #fff;
+  color: var(--ink);
+  box-shadow: 0 28px 60px rgba(18, 18, 18, 0.18);
+  animation: quote-modal-rise 0.24s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes quote-modal-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.quote-modal-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+
+.quote-modal-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.quote-modal-body p {
+  margin: 0 0 0.85rem;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink-soft);
+}
+
+.quote-modal-cta {
+  margin-top: 1.1rem !important;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+  font-weight: 600;
+  color: var(--ink) !important;
+}
+
+.quote-modal-close {
+  width: 100%;
+  margin-top: 1.25rem;
 }
 
 .contact-heading .section-title {

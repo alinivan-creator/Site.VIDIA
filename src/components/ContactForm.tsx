@@ -16,7 +16,7 @@ import {
   type PlanOption,
 } from "../plans";
 import { SignalWashMarks } from "./SignalWashMarks";
-import { CONTACT_QUOTE } from "../content/encouragement-quote";
+import { ContactQuoteModal } from "./ContactQuoteModal";
 
 type FormState = {
   phone: string;
@@ -211,7 +211,7 @@ export function ContactForm() {
 
         <div className="contact-main">
           <div className="contact-heading">
-            <p className="contact-quote">{CONTACT_QUOTE}</p>
+            <ContactQuoteModal />
             <p className="section-label">Contact</p>
             <h2 className="section-title">Hai să-ți simplificăm programările.</h2>
           </div>

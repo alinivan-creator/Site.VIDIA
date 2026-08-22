@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { SignalField } from "./SignalField";
-import { NICHE_FOOTER_LINKS } from "../nishe/config";
 
 export function SeoTargetSection() {
   return (
@@ -72,13 +71,6 @@ export function SeoTargetSection() {
             legislației din România.
           </p>
         </div>
-        <nav className="seo-targets-nav" aria-label="Pagini dedicate pe nișe">
-          {NICHE_FOOTER_LINKS.map((item) => (
-            <Link key={item.slug} to={item.path} className="seo-targets-chip">
-              {item.label}
-            </Link>
-          ))}
-        </nav>
       </div>
       <SignalField variant="constellation" />
     </section>
